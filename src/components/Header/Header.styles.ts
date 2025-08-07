@@ -8,14 +8,23 @@ export const HeaderNav = styled(motion.header)<{ $isScrolled: boolean }>`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; // The main header bar has a z-index of 1000
-  padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.md};
+  z-index: 1000;
   
-  background-color: ${({ $isScrolled }) => $isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent'};
-  backdrop-filter: blur(${({ $isScrolled }) => $isScrolled ? '10px' : '0px'});
-  border-bottom: 1px solid ${({ $isScrolled, theme }) => $isScrolled ? theme.colors.border : 'transparent'};
-
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+  // This pseudo-element creates the background for the main header bar.
+  // It is the source of truth for our styling.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${({ $isScrolled }) => $isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent'};
+    backdrop-filter: blur(${({ $isScrolled }) => $isScrolled ? '10px' : '0px'});
+    border-bottom: 1px solid ${({ $isScrolled, theme }) => $isScrolled ? theme.colors.border : 'transparent'};
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+    z-index: -1;
+  }
 `;
 
 export const NavContainer = styled.div`
@@ -24,8 +33,11 @@ export const NavContainer = styled.div`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.md};
+  position: relative;
 `;
 
+// ... LogoLink, NavLinks, NavLink, MobileMenuButton, ChevronWrapper are all correct and unchanged ...
 export const LogoLink = styled(Link)`
   font-family: ${({ theme }) => theme.fonts.secondary};
   font-weight: 700;
@@ -73,40 +85,66 @@ export const NavLink = styled(Link)`
   }
 `;
 
-// --- THE FIX IS IN THIS BLOCK ---
-export const MobileNavIcon = styled.div`
-  display: none;
-  font-size: 1.5rem;
+export const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  position: relative; // This makes the z-index property work.
-  z-index: 1001; // This ensures the icon is ON TOP of the header bar (which is at z-index 1000).
-  color: ${({ theme }) => theme.colors.primary}; // Explicitly set color to be safe.
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  @media (min-width: 769px) {
+    display: none;
   }
 `;
-// -----------------------------
 
-export const MobileNavPanel = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 75%;
-  max-width: 300px;
-  height: 100vh;
-  background-color: #111;
-  z-index: 1000; // The panel itself is behind the icon but above everything else.
+export const ChevronWrapper = styled(motion.div)`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  box-shadow: -10px 0px 30px rgba(0,0,0,0.5);
+  font-size: 0.8rem;
 `;
+
+
+// --- THE FINAL, REFINED FIX IS HERE ---
+export const MobileNavPanel = styled(motion.div)<{ $isScrolled: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  
+  // The panel's background is now directly and identically tied to the header's state.
+  background-color: ${({ $isScrolled }) => $isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent'};
+  backdrop-filter: blur(${({ $isScrolled }) => $isScrolled ? '10px' : '0px'});
+  border-bottom: 1px solid ${({ $isScrolled, theme }) => $isScrolled ? theme.colors.border : 'transparent'};
+
+  border-bottom-left-radius: ${({ theme }) => theme.borderRadius};
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden;
+  
+  // Ensure the transition matches the header's for a synchronized effect.
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+`;
+// -------------------------------------
 
 export const MobileNavLinks = styled.nav`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacings.lg};
+  padding: ${({ theme }) => theme.spacings.sm} 0;
+`;
+
+export const MobileNavLink = styled(Link)`
+  padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.md};
+  color: ${({ theme }) => theme.colors.secondary};
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent}20;
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;

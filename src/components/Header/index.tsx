@@ -3,16 +3,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Hamburger and Close icons
+import { FaChevronDown } from 'react-icons/fa';
 import { 
   HeaderNav, 
   NavContainer, 
   LogoLink, 
   NavLinks, 
   NavLink,
-  MobileNavIcon,
+  MobileMenuButton,
+  ChevronWrapper,
   MobileNavPanel,
-  MobileNavLinks
+  MobileNavLinks,
+  MobileNavLink,
 } from './Header.styles';
 
 const Header = () => {
@@ -25,97 +27,68 @@ const Header = () => {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // Prevent scrolling when mobile menu is open
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.body.style.overflow = 'auto'; // Cleanup on component unmount
     };
-  }, [isMenuOpen]); // Re-run effect when menu state changes
+  }, []);
 
   const panelVariants: Variants = {
-    hidden: { x: '100%' },
-    visible: { x: 0, transition: { type: 'tween', duration: 0.3 } },
-  };
-
-  const navLinkVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, height: 0 },
+    visible: { 
+      opacity: 1, 
+      height: 'auto', 
+      transition: { duration: 0.3, ease: 'easeInOut' } 
+    },
   };
 
   return (
-    <>
-      <HeaderNav $isScrolled={isScrolled}>
-        <NavContainer>
-          <LogoLink href="/">ZK.</LogoLink>
-          
-          {/* Desktop Navigation */}
-          <NavLinks>
-            <NavLink href="/#projects">Work</NavLink>
-            <NavLink href="/#about">About</NavLink>
-            <NavLink href="/#contact">Contact</NavLink>
-          </NavLinks>
+    <HeaderNav $isScrolled={isScrolled}>
+      <NavContainer>
+        <LogoLink href="/">ZK.</LogoLink>
+        
+        {/* Desktop Navigation */}
+        <NavLinks>
+          <NavLink href="/#projects">Work</NavLink>
+          <NavLink href="/#about">About</NavLink>
+          <NavLink href="/#contact">Contact</NavLink>
+        </NavLinks>
 
-          {/* Mobile Navigation Icon */}
-          <MobileNavIcon onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
-          </MobileNavIcon>
-        </NavContainer>
-      </HeaderNav>
+        {/* Refined Mobile Navigation Button */}
+        <MobileMenuButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <ChevronWrapper
+            animate={{ rotate: isMenuOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <FaChevronDown />
+          </ChevronWrapper>
+        </MobileMenuButton>
+      </NavContainer>
 
-      {/* Mobile Navigation Panel */}
+      {/* Mobile Drop-down Panel */}
       <AnimatePresence>
         {isMenuOpen && (
           <MobileNavPanel
+            $isScrolled={isScrolled} 
             variants={panelVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
           >
             <MobileNavLinks>
-              <NavLink 
-                as={motion.a}
-                href="/#projects" 
-                onClick={() => setIsMenuOpen(false)}
-                variants={navLinkVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.2 }}
-              >
+              <MobileNavLink href="/#projects" onClick={() => setIsMenuOpen(false)}>
                 Work
-              </NavLink>
-              <NavLink 
-                as={motion.a}
-                href="/#about" 
-                onClick={() => setIsMenuOpen(false)}
-                variants={navLinkVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.3 }}
-              >
+              </MobileNavLink>
+              <MobileNavLink href="/#about" onClick={() => setIsMenuOpen(false)}>
                 About
-              </NavLink>
-              <NavLink 
-                as={motion.a}
-                href="/#contact" 
-                onClick={() => setIsMenuOpen(false)}
-                variants={navLinkVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.4 }}
-              >
+              </MobileNavLink>
+              <MobileNavLink href="/#contact" onClick={() => setIsMenuOpen(false)}>
                 Contact
-              </NavLink>
+              </MobileNavLink>
             </MobileNavLinks>
           </MobileNavPanel>
         )}
       </AnimatePresence>
-    </>
+    </HeaderNav>
   );
 };
 
