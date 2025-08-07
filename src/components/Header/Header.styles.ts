@@ -49,6 +49,8 @@ export const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;
   position: relative;
+  display: flex;
+  gap: ${({ theme }) => theme.spacings.md};
   transition: color 0.3s ease;
    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     display: none;
@@ -74,4 +76,38 @@ export const NavLink = styled(Link)`
     transform: scaleX(1);
     transform-origin: left;
   }
+`;
+
+export const MobileNavIcon = styled.div`
+  display: none; // Hidden by default
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001; // Ensure it's on top of the mobile menu panel
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    display: block; // Visible only on mobile
+  }
+`;
+
+export const MobileNavPanel = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: #111; // A slightly different background to stand out
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -10px 0px 30px rgba(0,0,0,0.5);
+`;
+
+export const MobileNavLinks = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.lg};
 `;
