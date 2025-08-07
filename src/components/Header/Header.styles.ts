@@ -8,10 +8,9 @@ export const HeaderNav = styled(motion.header)<{ $isScrolled: boolean }>`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1000; // The main header bar has a z-index of 1000
   padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.md};
   
-  // Dynamic background effect based on scroll position
   background-color: ${({ $isScrolled }) => $isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent'};
   backdrop-filter: blur(${({ $isScrolled }) => $isScrolled ? '10px' : '0px'});
   border-bottom: 1px solid ${({ $isScrolled, theme }) => $isScrolled ? theme.colors.border : 'transparent'};
@@ -40,7 +39,7 @@ export const NavLinks = styled.nav`
   gap: ${({ theme }) => theme.spacings.md};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    display: none; // Hide on mobile for now; a mobile menu is a future enhancement
+    display: none;
   }
 `;
 
@@ -49,12 +48,8 @@ export const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;
   position: relative;
-  display: flex;
-  gap: ${({ theme }) => theme.spacings.md};
   transition: color 0.3s ease;
-   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    display: none;
-  }
+
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -78,16 +73,20 @@ export const NavLink = styled(Link)`
   }
 `;
 
+// --- THE FIX IS IN THIS BLOCK ---
 export const MobileNavIcon = styled.div`
-  display: none; // Hidden by default
+  display: none;
   font-size: 1.5rem;
   cursor: pointer;
-  z-index: 1001; // Ensure it's on top of the mobile menu panel
+  position: relative; // This makes the z-index property work.
+  z-index: 1001; // This ensures the icon is ON TOP of the header bar (which is at z-index 1000).
+  color: ${({ theme }) => theme.colors.primary}; // Explicitly set color to be safe.
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    display: block; // Visible only on mobile
+    display: block;
   }
 `;
+// -----------------------------
 
 export const MobileNavPanel = styled(motion.div)`
   position: fixed;
@@ -96,8 +95,8 @@ export const MobileNavPanel = styled(motion.div)`
   width: 75%;
   max-width: 300px;
   height: 100vh;
-  background-color: #111; // A slightly different background to stand out
-  z-index: 1000;
+  background-color: #111;
+  z-index: 1000; // The panel itself is behind the icon but above everything else.
   display: flex;
   flex-direction: column;
   align-items: center;
