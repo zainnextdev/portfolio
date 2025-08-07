@@ -68,7 +68,11 @@ const Hero = () => {
         I build fast, secure, and user-friendly websites that help businesses succeed, from initial concept to final launch.
       </SubHeading>
 
-      <CTAButton variants={itemVariants}>
+      <CTAButton 
+        as="a" 
+        href="/#projects"
+        variants={itemVariants}
+      >
         Explore The Blueprint
       </CTAButton>
     </HeroContainer>

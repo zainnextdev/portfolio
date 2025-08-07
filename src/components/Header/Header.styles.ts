@@ -50,7 +50,9 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
-
+   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    display: none;
+  }
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }

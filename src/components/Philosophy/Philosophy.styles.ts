@@ -8,7 +8,7 @@ export const PhilosophyGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: ${({ theme }) => theme.spacings.md};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+ @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: 1fr;
   }
 `;

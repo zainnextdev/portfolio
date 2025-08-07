@@ -36,7 +36,7 @@ const ProjectDetailsGrid = styled.div`
   gap: ${({ theme }) => theme.spacings.lg};
   margin-top: ${({ theme }) => theme.spacings.lg};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+ @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: 1fr;
   }
 `;
@@ -47,6 +47,9 @@ const Sidebar = styled.div`
   position: sticky;
   top: 120px; // Aligns with the header height + some padding
   align-self: start; // Prevents the sidebar from stretching
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    position: static; // Remove the "sticky" behavior on mobile so it just stacks normally
+  }
 `;
 
 const DetailSection = styled.div`

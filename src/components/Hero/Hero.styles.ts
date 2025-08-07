@@ -48,7 +48,7 @@ export const MainHeading = styled(motion.h1)`
   margin-bottom: ${({ theme }) => theme.spacings.sm};
   max-width: 900px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: ${({ theme }) => theme.fontSizes.xxl};
   }
 `;
@@ -59,7 +59,7 @@ export const SubHeading = styled(motion.p)`
   max-width: 700px;
   margin-bottom: ${({ theme }) => theme.spacings.md};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: ${({ theme }) => theme.fontSizes.medium};
   }
 `;

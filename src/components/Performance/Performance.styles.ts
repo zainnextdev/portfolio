@@ -8,8 +8,9 @@ export const PerformanceContainer = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacings.lg};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+ @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacings.md}; // Reduce the gap on mobile
   }
 `;
 
