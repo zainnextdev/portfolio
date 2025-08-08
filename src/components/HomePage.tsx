@@ -10,6 +10,7 @@ import { SectionHeader, SectionTitle, SectionSubtitle } from '@/components/Secti
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/ProjectCard';
 import { HorizontalShowcase } from '@/components/HorizontalShowcase';
+import LikeButton from '@/components/LikeButton';
 
 const Skills = dynamic(() => import('@/components/Skills'));
 const Performance = dynamic(() => import('@/components/Performance'));
@@ -19,6 +20,7 @@ const HomePage = () => {
   return (
     <main>
       <Hero />
+      <LikeButton /> 
       <div id="about">
         <Philosophy />
         <About />
