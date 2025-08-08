@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import {
   FooterContainer,
   SocialLinks,
@@ -11,9 +11,28 @@ import {
 
 const Footer = () => {
   return (
-    <FooterContainer>
+    <FooterContainer id="contact">
       <SocialLinks>
-        <SocialLink href="mailto:zain.nextdev@gmail.com" aria-label="Email">
+        <SocialLink 
+          href="https://github.com/zainnextdev"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="GitHub"
+        >
+          <FaGithub />
+        </SocialLink>
+        <SocialLink 
+          href="https://linkedin.com/in/zainkhalid-dev"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin />
+        </SocialLink>
+        <SocialLink 
+          href="mailto:zain.nextdev@gmail.com" 
+          aria-label="Email"
+        >
           <FaEnvelope />
         </SocialLink>
       </SocialLinks>
