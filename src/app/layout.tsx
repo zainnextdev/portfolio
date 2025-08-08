@@ -1,11 +1,12 @@
+// src/app/layout.tsx
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import { Providers } from './providers';
-import Header from '@/components/Header'; // Import Header
-import Footer from '@/components/Footer'; // Import Footer
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Head from 'next/head';
 
-// Font Configuration remains the same
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -18,13 +19,11 @@ const satoshi = localFont({
   display: 'swap',
 });
 
-// Metadata remains a server-side export
 export const metadata: Metadata = {
-  title: 'Zain Khalid - The Digital Architect',
-  description: 'Architecting high-performance, secure, and scalable digital experiences from foundation to finish.',
+  title: 'Zain Khalid - Digital Architect',
+  description: 'Building high-performance, secure, and scalable digital experiences from foundation to finish.',
 };
 
-// The RootLayout is now a clean Server Component
 export default function RootLayout({
   children,
 }: {
@@ -32,6 +31,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${satoshi.variable}`}>
+      <Head>
+        <link
+          rel="preload"
+          href="/hero-background.jpg"
+          as="image"
+        />
+      </Head>
       <body>
         <Providers>
           <Header />

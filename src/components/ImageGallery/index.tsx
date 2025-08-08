@@ -54,7 +54,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
               src={images[activeIndex]} 
               alt={`Project image ${activeIndex + 1}`} 
               fill
-              priority={activeIndex === 0} // Prioritize loading the first image
+              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 800px"
+              priority={true}
             />
           </motion.div>
         </AnimatePresence>
@@ -73,6 +74,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
                 alt={`Thumbnail ${index + 1}`} 
                 fill 
                 style={{ objectFit: 'cover' }} 
+                 loading="lazy" 
               />
             </Thumbnail>
           ))}
@@ -82,4 +84,4 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   );
 };
 
-export default ImageGallery;
+export default React.memo(ImageGallery);

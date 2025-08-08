@@ -1,5 +1,7 @@
+// src/components/HomePage.tsx
 'use client';
-
+import React from 'react';
+import dynamic from 'next/dynamic';
 import Hero from '@/components/Hero';
 import Philosophy from '@/components/Philosophy';
 import About from '@/components/About';
@@ -8,9 +10,10 @@ import { SectionHeader, SectionTitle, SectionSubtitle } from '@/components/Secti
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/ProjectCard';
 import { HorizontalShowcase } from '@/components/HorizontalShowcase';
-import Performance from '@/components/Performance';
-import Contact from '@/components/Contact';
-import Skills from '@/components/Skills';
+
+const Skills = dynamic(() => import('@/components/Skills'));
+const Performance = dynamic(() => import('@/components/Performance'));
+const Contact = dynamic(() => import('@/components/Contact'));
 
 const HomePage = () => {
   return (
@@ -22,12 +25,14 @@ const HomePage = () => {
       </div>
       <Skills />
       <Performance />
-      <section id="projects"> {/* Use a section tag with an ID */}
+
+      <section id="projects">
         <Section>
           <SectionHeader>
             <SectionTitle>The Blueprint</SectionTitle>
             <SectionSubtitle>
-              A selection of my featured work...
+              A selection of my featured work, showcasing a commitment to
+              quality, performance, and user-centric design.
             </SectionSubtitle>
           </SectionHeader>
         </Section>
@@ -37,6 +42,7 @@ const HomePage = () => {
           ))}
         </HorizontalShowcase>
       </section>
+
       <Contact />
     </main>
   );

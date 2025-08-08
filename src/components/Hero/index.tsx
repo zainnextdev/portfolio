@@ -1,39 +1,35 @@
 // src/components/Hero/index.tsx
-
 'use client';
 
 import React from 'react';
-import { Variants } from 'framer-motion'; // Import the Variants type
+import { motion, Variants } from 'framer-motion';
 import {
-  HeroContainer,
-  Name,
-  MainHeading,
-  SubHeading,
-  CTAButton,
-  BackgroundBlob,
+  HeroContainer, Name, MainHeading, SubHeading, CTAButton, BackgroundBlob
 } from './Hero.styles';
 
+const MemoizedName = React.memo(Name);
+const MemoizedMainHeading = React.memo(MainHeading);
+const MemoizedSubHeading = React.memo(SubHeading);
+
 const Hero = () => {
-  // Explicitly type the variants object
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
 
-  // Explicitly type this one as well
   const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
-        ease: 'easeInOut', // This string is valid, but typing the object helps TS
+        duration: 0.8,
+        ease: 'easeOut',
       },
     },
   };
@@ -57,19 +53,15 @@ const Hero = () => {
           ease: 'linear',
         }}
       />
-
-      <Name variants={itemVariants}>ZAIN KHALID</Name>
-
-      <MainHeading variants={itemVariants}>
+      <MemoizedName variants={itemVariants}>Zain Khalid</MemoizedName>
+      <MemoizedMainHeading variants={itemVariants}>
         Digital experiences that perform and inspire.
-      </MainHeading>
-
-      <SubHeading variants={itemVariants}>
+      </MemoizedMainHeading>
+      <MemoizedSubHeading variants={itemVariants}>
         I build fast, secure, and user-friendly websites that help businesses succeed, from initial concept to final launch.
-      </SubHeading>
-
+      </MemoizedSubHeading>
       <CTAButton 
-        as="a" 
+        as="a"
         href="/#projects"
         variants={itemVariants}
       >
@@ -79,4 +71,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default React.memo(Hero);
