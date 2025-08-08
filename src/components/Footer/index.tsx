@@ -22,7 +22,7 @@ const Footer = () => {
           <FaGithub />
         </SocialLink>
         <SocialLink 
-          href="https://linkedin.com/in/zain-khalid-dev"
+          href="https://www.linkedin.com/in/zainkhalid-dev/"
           target="_blank" 
           rel="noopener noreferrer" 
           aria-label="LinkedIn"
