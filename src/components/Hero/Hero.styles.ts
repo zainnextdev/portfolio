@@ -20,7 +20,7 @@ export const HeroContainer = styled(motion.section)`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.8)), url('/hero-background.jpg');
+    background-image: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.8)), url('/hero-background.webp');
     background-size: cover;
     background-position: center;
     z-index: -2; // Place it behind the text and the animated blob
