@@ -1,0 +1,3525 @@
+--- portfolio Snapshot: ---
+--- Generated on: Fri, 08 Aug 2025 12:23:00 GMT ---
+
+
+
+=============== 📌 CRITICAL CONFIG FILES ===============
+
+
+--- FILE: package.json ---
+
+{
+  "name": "zain-khalid-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^4.6.2",
+    "@react-email/components": "^0.5.0",
+    "@react-email/render": "^1.2.0",
+    "@upstash/redis": "^1.35.3",
+    "framer-motion": "^12.23.12",
+    "next": "^15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-email": "^4.2.8",
+    "react-icons": "^5.5.0",
+    "resend": "^6.0.0",
+    "sharp": "^0.34.3",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/styled-components": "^5.1.34",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.6",
+    "typescript": "^5"
+  }
+}
+
+
+--- END OF FILE: package.json ---
+
+
+--- FILE: tsconfig.json ---
+
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js"],
+  "exclude": ["node_modules"]
+}
+
+
+--- END OF FILE: tsconfig.json ---
+
+
+--- FILE: next.config.js ---
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  compiler: {
+    styledComponents: true,
+  },
+  transpilePackages: ['framer-motion'],
+  images: {
+    loader: 'default', // Keep the default loader
+    // This line tells Next.js to use sharp instead of squoosh
+    // Note: This might not be explicitly needed in the latest versions if sharp is installed,
+    // but it's good to be explicit.
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+};
+
+module.exports = nextConfig;
+
+--- END OF FILE: next.config.js ---
+
+
+
+=============== 🌳 DIRECTORY STRUCTURE ===============
+
+├── .gitignore
+├── emails
+│   └── ContactFormEmail.tsx
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.js
+├── package.json
+├── public
+│   ├── file.svg
+│   ├── fonts
+│   │   └── Satoshi-Variable.woff2
+│   ├── globe.svg
+│   ├── hero-background.webp
+│   ├── lighthouse-report.png
+│   ├── next.svg
+│   ├── profile.jpg
+│   ├── projects
+│   │   ├── admin1.png
+│   │   ├── admin2.png
+│   │   ├── admin3.png
+│   │   ├── ajcollections1.png
+│   │   ├── ajcollections2.png
+│   │   ├── ajcollections3.png
+│   │   ├── ajcollections4.png
+│   │   ├── dashboard1.png
+│   │   ├── dashboard2.png
+│   │   ├── dashboard3.png
+│   │   ├── genius.png
+│   │   ├── genius2.png
+│   │   ├── genius3.png
+│   │   ├── genius4.png
+│   │   ├── genius5.png
+│   │   ├── genius7.png
+│   │   ├── logo1.png
+│   │   ├── logo2.png
+│   │   ├── logo3.png
+│   │   ├── logo4.png
+│   │   ├── logo5.png
+│   │   ├── poster1.png
+│   │   ├── poster10.png
+│   │   ├── poster2.png
+│   │   ├── poster3.png
+│   │   ├── poster4.png
+│   │   ├── poster5.png
+│   │   ├── poster6.png
+│   │   ├── poster7.png
+│   │   ├── poster8.png
+│   │   ├── poster9.png
+│   │   ├── user1.png
+│   │   ├── user2.png
+│   │   ├── user3.png
+│   │   └── user4.png
+│   ├── resume.pdf
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+├── snapshot.mjs
+├── src
+│   ├── app
+│   │   ├── api
+│   │   │   ├── likes
+│   │   │   │   └── route.ts
+│   │   │   └── send-email
+│   │   │       └── route.ts
+│   │   ├── favicon.ico
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── projects
+│   │   │   └── [slug]
+│   │   │       ├── page.tsx
+│   │   │       └── ProjectDetailClient.tsx
+│   │   └── providers.tsx
+│   ├── components
+│   │   ├── About
+│   │   │   ├── About.styles.ts
+│   │   │   └── index.tsx
+│   │   ├── Contact
+│   │   │   ├── Contact.styles.ts
+│   │   │   └── index.tsx
+│   │   ├── Footer
+│   │   │   ├── Footer.styles.ts
+│   │   │   └── index.tsx
+│   │   ├── Header
+│   │   │   ├── Header.styles.ts
+│   │   │   └── index.tsx
+│   │   ├── Hero
+│   │   │   ├── Hero.styles.ts
+│   │   │   └── index.tsx
+│   │   ├── HomePage.tsx
+│   │   ├── HorizontalShowcase.ts
+│   │   ├── ImageGallery
+│   │   │   ├── ImageGallery.styles.ts
+│   │   │   └── index.tsx
+│   │   ├── LikeButton
+│   │   │   ├── index.tsx
+│   │   │   └── LikeButton.styles.ts
+│   │   ├── Performance
+│   │   │   ├── index.tsx
+│   │   │   └── Performance.styles.ts
+│   │   ├── PerformanceAccordion
+│   │   │   ├── index.tsx
+│   │   │   └── PerformanceAccordion.styles.ts
+│   │   ├── Philosophy
+│   │   │   ├── index.tsx
+│   │   │   └── Philosophy.styles.ts
+│   │   ├── ProjectCard
+│   │   │   ├── index.tsx
+│   │   │   └── ProjectCard.styles.ts
+│   │   ├── Section.ts
+│   │   ├── SectionHeader.ts
+│   │   └── Skills
+│   │       ├── index.tsx
+│   │       └── Skills.styles.ts
+│   ├── data
+│   │   ├── projects.ts
+│   │   └── skills.ts
+│   ├── lib
+│   │   └── registry.tsx
+│   └── styles
+│       ├── common.styles.ts
+│       ├── GlobalStyles.ts
+│       ├── styled.d.ts
+│       └── theme.ts
+└── tsconfig.json
+
+
+
+=============== 📄 SOURCE CODE & FILES ===============
+
+
+--- FILE: emails/ContactFormEmail.tsx ---
+import React from 'react';
+import { Html, Body, Head, Heading, Hr, Container, Preview, Section, Text } from '@react-email/components';
+
+interface ContactFormEmailProps {
+  senderEmail: string;
+  message: string;
+}
+
+export const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({ senderEmail, message }) => (
+  <Html>
+    <Head />
+    <Preview>New message from your portfolio site</Preview>
+    <Body style={{ backgroundColor: '#f6f9fc', fontFamily: 'Arial, sans-serif' }}>
+      <Container style={{ backgroundColor: '#ffffff', border: '1px solid #eee', borderRadius: '5px', padding: '20px', margin: '40px auto', maxWidth: '600px' }}>
+        <Section>
+          <Heading style={{ color: '#333' }}>You received a new message from your contact form</Heading>
+          <Text style={{ color: '#555', fontSize: '16px' }}>{message}</Text>
+          <Hr style={{ borderColor: '#eee', margin: '20px 0' }} />
+          <Text style={{ color: '#888', fontSize: '14px' }}>The sender's email is: {senderEmail}</Text>
+        </Section>
+      </Container>
+    </Body>
+  </Html>
+);
+
+export default ContactFormEmail;
+
+--- END OF FILE: emails/ContactFormEmail.tsx ---
+
+
+--- FILE: eslint.config.mjs ---
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+];
+
+export default eslintConfig;
+
+
+--- END OF FILE: eslint.config.mjs ---
+
+
+--- FILE: next-env.d.ts ---
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+
+--- END OF FILE: next-env.d.ts ---
+
+
+--- FILE: next.config.js ---
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  compiler: {
+    styledComponents: true,
+  },
+  transpilePackages: ['framer-motion'],
+  images: {
+    loader: 'default', // Keep the default loader
+    // This line tells Next.js to use sharp instead of squoosh
+    // Note: This might not be explicitly needed in the latest versions if sharp is installed,
+    // but it's good to be explicit.
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+};
+
+module.exports = nextConfig;
+
+--- END OF FILE: next.config.js ---
+
+
+--- FILE: package.json ---
+{
+  "name": "zain-khalid-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^4.6.2",
+    "@react-email/components": "^0.5.0",
+    "@react-email/render": "^1.2.0",
+    "@upstash/redis": "^1.35.3",
+    "framer-motion": "^12.23.12",
+    "next": "^15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-email": "^4.2.8",
+    "react-icons": "^5.5.0",
+    "resend": "^6.0.0",
+    "sharp": "^0.34.3",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/styled-components": "^5.1.34",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.6",
+    "typescript": "^5"
+  }
+}
+
+
+--- END OF FILE: package.json ---
+
+
+--- FILE: public/file.svg ---
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+
+--- END OF FILE: public/file.svg ---
+
+
+--- FILE: public/globe.svg ---
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+
+--- END OF FILE: public/globe.svg ---
+
+
+--- FILE: public/next.svg ---
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+
+--- END OF FILE: public/next.svg ---
+
+
+--- FILE: public/vercel.svg ---
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+
+--- END OF FILE: public/vercel.svg ---
+
+
+--- FILE: public/window.svg ---
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+
+--- END OF FILE: public/window.svg ---
+
+
+--- FILE: README.md ---
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+--- END OF FILE: README.md ---
+
+
+--- FILE: snapshot.mjs ---
+// create_snapshot.mjs
+
+import fs from 'fs/promises';
+import path from 'path';
+
+// --- CONFIGURATION ---
+const ROOT_DIRECTORY = '.';
+const OUTPUT_FILE = 'portfolio_snapshot.txt';
+
+// Files and directories to explicitly ignore.
+const IGNORE_PATTERNS = [
+  'node_modules',
+  '.git',
+  '.next',
+  'out',
+  'dist',
+  'build',
+  '.vscode',
+  '.idea',
+  'pnpm-lock.yaml',
+  'package-lock.json',
+  'yarn.lock',
+  '.env',
+  '.env.local',
+  '.env.production',
+  '.env.development',
+  'public/images', // Example: Ignore image assets
+  'public/fonts',  // Example: Ignore font assets
+  OUTPUT_FILE
+];
+
+// File extensions to include in the content dump.
+const INCLUDE_EXTENSIONS = [
+  '.js', '.ts', '.jsx', '.tsx', // Scripts
+  '.json',                       // Configs
+  '.scss', '.css', '.module.scss', // Styles
+  '.md', '.mdx',                 // Documentation
+  '.mjs', '.cjs',                // JS Modules
+  '.svg'                         // Include SVGs as they are often used as components
+];
+
+// --- SCRIPT LOGIC ---
+
+// A Set for quick lookup of ignored paths.
+const ignoreSet = new Set(IGNORE_PATTERNS);
+
+async function generateSnapshot() {
+  console.log('🚀 Starting to generate project snapshot...');
+  try {
+    // Clear the output file if it exists, or create it.
+    await fs.writeFile(OUTPUT_FILE, '');
+
+    // 1. Write a header
+    await appendToOutput(`--- portfolio Snapshot: ---`);
+    await appendToOutput(`--- Generated on: ${new Date().toUTCString()} ---\n`);
+
+    // 2. Add critical configuration files first for context
+    await appendToOutput(`\n\n=============== 📌 CRITICAL CONFIG FILES ===============\n`);
+    const criticalFiles = ['package.json', 'tsconfig.json', 'next.config.mjs', 'next.config.js', 'postcss.config.js', 'tailwind.config.js'];
+    for (const file of criticalFiles) {
+      try {
+        const content = await fs.readFile(path.join(ROOT_DIRECTORY, file), 'utf-8');
+        await appendToOutput(`\n--- FILE: ${file} ---\n`);
+        await appendToOutput(content);
+        await appendToOutput(`\n--- END OF FILE: ${file} ---\n`);
+      } catch (error) {
+        // File might not exist (e.g., no tailwind.config.js), which is fine.
+        if (error.code !== 'ENOENT') {
+            console.warn(`⚠️  Could not read critical file: ${file}`);
+        }
+      }
+    }
+
+    // 3. Generate and append the directory tree
+    await appendToOutput(`\n\n=============== 🌳 DIRECTORY STRUCTURE ===============\n`);
+    const tree = await generateTree(ROOT_DIRECTORY, '');
+    await appendToOutput(tree);
+
+    // 4. Append the content of all other relevant files
+    await appendToOutput(`\n\n=============== 📄 SOURCE CODE & FILES ===============\n`);
+    await processDirectory(ROOT_DIRECTORY);
+
+    console.log(`✅ Success! Project snapshot saved to ${OUTPUT_FILE}`);
+
+  } catch (error) {
+    console.error('❌ An error occurred while generating the snapshot:', error);
+  }
+}
+
+async function appendToOutput(content) {
+  await fs.appendFile(OUTPUT_FILE, content + '\n');
+}
+
+async function generateTree(dir, prefix) {
+  let treeString = '';
+  try {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const filteredEntries = entries.filter(entry => !ignoreSet.has(entry.name));
+
+    for (const [index, entry] of filteredEntries.entries()) {
+      const connector = index === filteredEntries.length - 1 ? '└── ' : '├── ';
+      treeString += `${prefix}${connector}${entry.name}\n`;
+      if (entry.isDirectory()) {
+        const newPrefix = prefix + (index === filteredEntries.length - 1 ? '    ' : '│   ');
+        treeString += await generateTree(path.join(dir, entry.name), newPrefix);
+      }
+    }
+  } catch (error) {
+    // Ignore errors for directories we can't read (e.g., permissions)
+  }
+  return treeString;
+}
+
+async function processDirectory(dir) {
+  try {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (ignoreSet.has(entry.name)) {
+        continue;
+      }
+
+      if (entry.isDirectory()) {
+        await processDirectory(fullPath);
+      } else if (entry.isFile() && INCLUDE_EXTENSIONS.includes(path.extname(entry.name))) {
+        try {
+          const content = await fs.readFile(fullPath, 'utf-8');
+          await appendToOutput(`\n--- FILE: ${fullPath.replace(/\\/g, '/')} ---`);
+          await appendToOutput(content);
+          await appendToOutput(`\n--- END OF FILE: ${fullPath.replace(/\\/g, '/')} ---\n`);
+        } catch (readError) {
+          console.warn(`⚠️  Could not read file: ${fullPath}`);
+        }
+      }
+    }
+  } catch (error) {
+    // Ignore errors for directories we can't read
+  }
+}
+
+// Run the main function
+generateSnapshot();
+
+--- END OF FILE: snapshot.mjs ---
+
+
+--- FILE: src/app/api/likes/route.ts ---
+// src/app/api/likes/route.ts
+
+import { NextRequest, NextResponse } from 'next/server';
+import { Redis } from '@upstash/redis';
+
+// Initialize the Redis client from environment variables.
+// Ensure these are set in your Vercel project settings.
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+const LIKES_KEY = 'portfolio:likes';
+const VISITOR_PREFIX = 'visitor:'; // We now use a visitor prefix instead of IP
+const TTL_SECONDS = 86400; // 24 hours in seconds
+
+/**
+ * Handles GET requests to fetch the current like count.
+ */
+export async function GET() {
+  try {
+    const likes = await redis.get(LIKES_KEY);
+    // Return the count, defaulting to 0 if the key doesn't exist yet.
+    return NextResponse.json({ likes: Number(likes) || 0 });
+  } catch (error) {
+    console.error("Error fetching likes:", error);
+    return NextResponse.json({ error: 'Failed to fetch likes' }, { status: 500 });
+  }
+}
+
+/**
+ * Handles POST requests to increment the like count, with per-device rate limiting.
+ */
+export async function POST(request: NextRequest) {
+  // We expect a 'visitorId' generated by FingerprintJS in the request body.
+  const { visitorId } = await request.json();
+
+  // Validate that we received a visitorId.
+  if (!visitorId) {
+    return NextResponse.json({ error: 'Missing Visitor ID.' }, { status: 400 });
+  }
+
+  const visitorKey = `${VISITOR_PREFIX}${visitorId}`;
+
+  try {
+    // Check if this unique visitor has already liked in the last 24 hours.
+    const hasLiked = await redis.get(visitorKey);
+
+    if (hasLiked) {
+      return NextResponse.json({ error: 'This device has already liked in the last 24 hours.' }, { status: 429 }); // 429: Too Many Requests
+    }
+
+    // Use a Redis transaction to ensure both operations succeed or fail together.
+    // This is an atomic operation, preventing race conditions.
+    const transaction = redis.multi();
+    transaction.incr(LIKES_KEY); // Increment the total likes count.
+    transaction.set(visitorKey, '1', { ex: TTL_SECONDS }); // Set the visitor's lock key with a 24-hour expiry.
+
+    const results = await transaction.exec();
+    const newLikes = results[0]; // The result of the first command (INCR) is the new like count.
+
+    return NextResponse.json({ likes: newLikes });
+
+  } catch (error) {
+    console.error("Error incrementing likes:", error);
+    return NextResponse.json({ error: 'Failed to increment likes' }, { status: 500 });
+  }
+}
+
+--- END OF FILE: src/app/api/likes/route.ts ---
+
+
+--- FILE: src/app/api/send-email/route.ts ---
+// src/app/api/send-email/route.ts
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { ContactFormEmail } from '../../../../emails/ContactFormEmail';
+import React from 'react';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const toEmail = 'zain.nextdev@gmail.com'; // **REPLACE THIS WITH YOUR GMAIL**
+
+export async function POST(request: Request) {
+  const { email, message } = await request.json();
+
+  if (!email || !message) {
+    return NextResponse.json({ error: 'Email and message are required.' }, { status: 400 });
+  }
+
+  try {
+    const { data } = await resend.emails.send({
+      from: 'Contact Form <onboarding@resend.dev>', // Required by Resend
+      to: toEmail,
+      subject: 'New Message from Portfolio Contact Form',
+      replyTo: email,
+      react: React.createElement(ContactFormEmail, {
+        senderEmail: email,
+        message: message,
+      }),
+    });
+
+    return NextResponse.json({ message: 'Email sent successfully!', data });
+  } catch (error) {
+    return NextResponse.json({ error: 'Something went wrong.' }, { status: 500 });
+  }
+}
+
+--- END OF FILE: src/app/api/send-email/route.ts ---
+
+
+--- FILE: src/app/layout.tsx ---
+// src/app/layout.tsx
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Providers } from './providers';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Head from 'next/head';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const satoshi = localFont({
+  src: '../../public/fonts/Satoshi-Variable.woff2',
+  variable: '--font-satoshi',
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: 'Zain Khalid - Digital Architect',
+  description: 'Building high-performance, secure, and scalable digital experiences from foundation to finish.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className={`${inter.variable} ${satoshi.variable}`}>
+      <Head>
+        <link
+          rel="preload"
+          href="/hero-background.jpg"
+          as="image"
+        />
+      </Head>
+      <body>
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
+      </body>
+    </html>
+  );
+}
+
+--- END OF FILE: src/app/layout.tsx ---
+
+
+--- FILE: src/app/page.tsx ---
+// src/app/page.tsx
+
+import HomePage from "@/components/HomePage";
+
+export default function Home() {
+  // This is now a clean Server Component rendering a single Client Component.
+  return <HomePage />;
+}
+
+--- END OF FILE: src/app/page.tsx ---
+
+
+--- FILE: src/app/projects/[slug]/page.tsx ---
+// src/app/projects/[slug]/page.tsx
+
+import React from 'react';
+import { projects, Project } from '@/data/projects';
+import { notFound } from 'next/navigation';
+import ProjectDetailClient from './ProjectDetailClient';
+
+// This function for generating static pages at build time is correct and remains.
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+// This helper function for data fetching is also correct and remains.
+async function getProject(slug: string): Promise<Project | undefined> {
+  // In a real app, this could be an async API call: await fetch(...)
+  return projects.find((p) => p.slug === slug);
+}
+
+
+// --- THE DEFINITIVE FIX IS HERE ---
+
+// 1. Define a 'Props' type that accurately reflects what Next.js passes to a page component.
+// This includes 'params' and 'searchParams'.
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+// 2. The component is async and uses the new 'Props' type.
+// We are no longer destructuring in the function signature.
+export default async function ProjectPage(props: Props) {
+  // 3. Destructuring now happens safely inside the function body.
+  const { slug } = props.params;
+  const project = await getProject(slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  // Pass the clean, resolved data as a prop to our Client Component.
+  return <ProjectDetailClient project={project} />;
+}
+
+--- END OF FILE: src/app/projects/[slug]/page.tsx ---
+
+
+--- FILE: src/app/projects/[slug]/ProjectDetailClient.tsx ---
+// src/app/projects/[slug]/ProjectDetailClient.tsx
+
+'use client'; // This directive is essential as we are using hooks and styled-components.
+
+import styled from 'styled-components';
+import { Project } from '@/data/projects';
+import { Section } from '@/components/Section';
+import ImageGallery from '@/components/ImageGallery';
+import { TechList, TechTag, LinkContainer, ProjectLink } from '@/styles/common.styles';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+
+// Styled components defined specifically for this page layout.
+const ProjectHeader = styled.div`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacings.lg};
+`;
+
+const ProjectTitle = styled.h1`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.display};
+  margin-bottom: ${({ theme }) => theme.spacings.xs};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes.xxl};
+  }
+`;
+
+const ProjectCategory = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.large};
+`;
+
+const ProjectDetailsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: ${({ theme }) => theme.spacings.lg};
+  margin-top: ${({ theme }) => theme.spacings.lg};
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const MainContent = styled.div``;
+
+const Sidebar = styled.div`
+  position: sticky;
+  top: 120px; // Aligns with the header height + some padding
+  align-self: start; // Prevents the sidebar from stretching
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    position: static; // Remove the "sticky" behavior on mobile so it just stacks normally
+  }
+`;
+
+const DetailSection = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+
+  h3 {
+    font-family: ${({ theme }) => theme.fonts.secondary};
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  }
+`;
+
+const SectionHeading = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: 2rem;
+  margin-bottom: 1rem;
+`;
+
+const Description = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  line-height: 1.8;
+  font-size: 1.1rem;
+`;
+
+
+interface ProjectDetailClientProps {
+  project: Project;
+}
+
+const ProjectDetailClient: React.FC<ProjectDetailClientProps> = ({ project }) => {
+  return (
+    <Section as="main" style={{paddingTop: '8rem', paddingBottom: '8rem'}}>
+      <ProjectHeader>
+        <ProjectTitle>{project.title}</ProjectTitle>
+        <ProjectCategory>{project.category}</ProjectCategory>
+      </ProjectHeader>
+
+      <ImageGallery images={project.images} />
+
+      <ProjectDetailsGrid>
+        <MainContent>
+          <SectionHeading>About This Project</SectionHeading>
+          
+          {/* Render structured details if they exist, otherwise fall back to the simple description */}
+          {project.details && project.details.length > 0 ? (
+            project.details.map(detail => (
+              <DetailSection key={detail.heading}>
+                <h3>{detail.heading}</h3>
+                <Description>{detail.text}</Description>
+              </DetailSection>
+            ))
+          ) : (
+            <Description>{project.description}</Description>
+          )}
+        </MainContent>
+        
+        <Sidebar>
+          <SectionHeading>Tech Stack & Links</SectionHeading>
+          <TechList>
+            {project.techStack.map(tech => (
+              <TechTag key={tech}>{tech}</TechTag>
+            ))}
+          </TechList>
+
+          <LinkContainer style={{marginTop: '2rem', flexDirection: 'column', alignItems: 'flex-start'}}>
+            {project.liveLink && (
+              <ProjectLink href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                <FaExternalLinkAlt /> Live Site
+              </ProjectLink>
+            )}
+            {project.githubLink && (
+              <ProjectLink href={project.githubLink} target="_blank" rel="noopener noreferrer">
+                <FaGithub /> GitHub Repository
+              </ProjectLink>
+            )}
+          </LinkContainer>
+        </Sidebar>
+      </ProjectDetailsGrid>
+    </Section>
+  );
+};
+
+export default ProjectDetailClient;
+
+--- END OF FILE: src/app/projects/[slug]/ProjectDetailClient.tsx ---
+
+
+--- FILE: src/app/providers.tsx ---
+'use client'; // This is the key! This whole component is for the client.
+
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import StyledComponentsRegistry from '@/lib/registry';
+import { theme } from '@/styles/theme';
+import { GlobalStyles } from '@/styles/GlobalStyles';
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <StyledComponentsRegistry>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        {children}
+      </ThemeProvider>
+    </StyledComponentsRegistry>
+  );
+}
+
+--- END OF FILE: src/app/providers.tsx ---
+
+
+--- FILE: src/components/About/About.styles.ts ---
+// src/components/About/About.styles.ts
+
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+export const AboutContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; // Image column is smaller
+  gap: ${({ theme }) => theme.spacings.lg};
+  align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+`;
+
+export const ImageWrapper = styled(motion.div)`
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1 / 1; // Makes it a perfect square
+  position: relative;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden; // Important for the border-radius on the Next/Image
+  justify-self: center; // Centers the image when grid column is wider
+`;
+
+export const ProfileImage = styled(Image)`
+  filter: grayscale(100%);
+  transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+  
+  // The hover effect is controlled by the parent wrapper
+  ${ImageWrapper}:hover & {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+`;
+
+export const TextContent = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    align-items: center;
+  }
+`;
+
+export const AboutHeading = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
+
+  span {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
+export const AboutBody = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  line-height: 1.8;
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+  max-width: 600px;
+`;
+
+--- END OF FILE: src/components/About/About.styles.ts ---
+
+
+--- FILE: src/components/About/index.tsx ---
+// src/components/About/index.tsx
+
+'use client';
+
+import React from 'react';
+import { Variants } from 'framer-motion';
+import { Section } from '@/components/Section';
+import {
+  AboutContainer,
+  ImageWrapper,
+  ProfileImage,
+  TextContent,
+  AboutHeading,
+  AboutBody,
+} from './About.styles';
+import { CTAButton } from '../Hero/Hero.styles'; // Reusing our awesome button
+
+const About = () => {
+  const animationVariants: Variants = {
+    offscreen: {
+      x: -100, // Starts off-screen to the left
+      opacity: 0,
+    },
+    onscreen: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        bounce: 0.3,
+        duration: 1,
+      },
+    },
+  };
+
+  const imageVariants: Variants = {
+    offscreen: {
+      scale: 0.8,
+      opacity: 0,
+    },
+    onscreen: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        ease: 'easeOut'
+      },
+    },
+  };
+
+  return (
+    <Section>
+      <AboutContainer>
+        <ImageWrapper
+          variants={imageVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          <ProfileImage
+            src="/profile.jpg"
+            alt="Zain Khalid - Digital Architect"
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
+          />
+        </ImageWrapper>
+        <TextContent
+          variants={animationVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <AboutHeading>
+            The Architect Behind the Code<span>.</span>
+          </AboutHeading>
+
+          <AboutBody>
+            Hello, I&apos;m Zain. I&apos;m a developer with a unique blend of deep technical skill and a keen eye for design. My background in C++ and C# means I don&apos;t just build websites; I understand how to make them truly fast and efficient from the ground up.
+            <br/><br/>
+            I specialize in turning complex challenges into clean, user-friendly, and high-performing web applications. For me, a successful project isn&apos;t just about great code—it&apos;s about creating a valuable tool that helps your business grow and your users succeed.
+          </AboutBody>
+          
+          <CTAButton as="a" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            View My Résumé
+          </CTAButton>
+        </TextContent>
+      </AboutContainer>
+    </Section>
+  );
+};
+
+export default React.memo(About);
+
+--- END OF FILE: src/components/About/index.tsx ---
+
+
+--- FILE: src/components/Contact/Contact.styles.ts ---
+// src/components/Contact/Contact.styles.ts
+import styled from 'styled-components';
+
+export const ContactGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${({ theme }) => theme.spacings.lg};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const ContactInfo = styled.div``;
+
+export const InfoBlock = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.sm};
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+  font-size: 1.1rem;
+
+  svg {
+    font-size: 1.5rem;
+    color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
+export const ContactForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacings.sm};
+`;
+
+export const Input = styled.input`
+  background-color: #1a1a1a;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  padding: 0.8rem 1rem;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
+export const Textarea = styled.textarea`
+  background-color: #1a1a1a;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  padding: 0.8rem 1rem;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 150px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
+export const SubmitButton = styled.button`
+  // Re-using styles from an existing component if you have a primary button, or define new ones
+  background-color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-weight: 600;
+  padding: 0.8rem 2.5rem;
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  align-self: flex-start;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+--- END OF FILE: src/components/Contact/Contact.styles.ts ---
+
+
+--- FILE: src/components/Contact/index.tsx ---
+// src/components/Contact/index.tsx
+'use client';
+import React, { useState } from 'react';
+import { Section } from '@/components/Section';
+import { SectionHeader, SectionTitle, SectionSubtitle } from '@/components/SectionHeader';
+import { ContactGrid, ContactInfo, InfoBlock, ContactForm, Input, Textarea, SubmitButton } from './Contact.styles';
+import { FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+
+const Contact = () => {
+  const [status, setStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus('Sending...');
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      email: formData.get('email') as string,
+      message: formData.get('message') as string,
+    };
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setStatus('Message sent successfully!');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        const errorData = await response.json();
+        setStatus(`Error: ${errorData.error || 'Something went wrong.'}`);
+      }
+    } catch (e) {
+      setStatus('Error: Could not connect to the server.');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setStatus(''), 5000); // Clear status after 5 seconds
+    }
+  };
+
+  return (
+    <Section id="contact">
+      <SectionHeader>
+        <SectionTitle>Get In Touch</SectionTitle>
+        <SectionSubtitle>
+          Have a project in mind or want to connect? I&apos;m always open to discussing new ideas and opportunities.
+        </SectionSubtitle>
+      </SectionHeader>
+      <ContactGrid>
+        <ContactInfo>
+          <h3>Contact Details</h3>
+          <p style={{color: '#888888', marginBottom: '2rem'}}>
+            Feel free to reach out to me directly through any of the following channels. I look forward to hearing from you.
+          </p>
+          <InfoBlock>
+            <FaEnvelope />
+            <span>zain.nextdev@gmail.com</span>
+          </InfoBlock>
+          <InfoBlock>
+            <FaWhatsapp />
+            <span>+92 323 6748502</span>
+          </InfoBlock>
+        </ContactInfo>
+        <ContactForm onSubmit={handleSubmit}>
+          <h3>Send Me a Message</h3>
+          <Input type="email" name="email" placeholder="Your Email Address" required />
+          <Textarea name="message" placeholder="Your Message" required />
+          <SubmitButton type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+          </SubmitButton>
+          {status && <p style={{ marginTop: '1rem' }}>{status}</p>}
+        </ContactForm>
+      </ContactGrid>
+    </Section>
+  );
+};
+
+export default Contact;
+
+--- END OF FILE: src/components/Contact/index.tsx ---
+
+
+--- FILE: src/components/Footer/Footer.styles.ts ---
+// src/components/Footer/Footer.styles.ts
+import styled from 'styled-components';
+
+export const FooterContainer = styled.footer`
+  padding: ${({ theme }) => theme.spacings.lg} ${({ theme }) => theme.spacings.md};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  text-align: center;
+`;
+
+export const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacings.md};
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+`;
+
+export const SocialLink = styled.a`
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+    transform: translateY(-3px);
+  }
+`;
+
+export const CopyrightText = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+`;
+
+--- END OF FILE: src/components/Footer/Footer.styles.ts ---
+
+
+--- FILE: src/components/Footer/index.tsx ---
+'use client';
+
+import React from 'react';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import {
+  FooterContainer,
+  SocialLinks,
+  SocialLink,
+  CopyrightText
+} from './Footer.styles';
+
+const Footer = () => {
+  return (
+    <FooterContainer id="contact">
+      <SocialLinks>
+        <SocialLink 
+          href="https://github.com/zainnextdev"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="GitHub"
+        >
+          <FaGithub />
+        </SocialLink>
+        <SocialLink 
+          href="https://www.linkedin.com/in/zainkhalid-dev/"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin />
+        </SocialLink>
+        <SocialLink 
+          href="mailto:zain.nextdev@gmail.com" 
+          aria-label="Email"
+        >
+          <FaEnvelope />
+        </SocialLink>
+      </SocialLinks>
+      <CopyrightText>
+        © {new Date().getFullYear()} Zain Khalid. All Rights Reserved.
+      </CopyrightText>
+    </FooterContainer>
+  );
+};
+
+export default Footer;
+
+--- END OF FILE: src/components/Footer/index.tsx ---
+
+
+--- FILE: src/components/Header/Header.styles.ts ---
+// src/components/Header/Header.styles.ts
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+export const HeaderNav = styled(motion.header)<{ $isScrolled: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  
+  // This pseudo-element creates the background for the main header bar.
+  // It is the source of truth for our styling.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${({ $isScrolled }) => $isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent'};
+    backdrop-filter: blur(${({ $isScrolled }) => $isScrolled ? '10px' : '0px'});
+    border-bottom: 1px solid ${({ $isScrolled, theme }) => $isScrolled ? theme.colors.border : 'transparent'};
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+    z-index: -1;
+  }
+`;
+
+export const NavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.md};
+  position: relative;
+`;
+
+// ... LogoLink, NavLinks, NavLink, MobileMenuButton, ChevronWrapper are all correct and unchanged ...
+export const LogoLink = styled(Link)`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const NavLinks = styled.nav`
+  display: flex;
+  gap: ${({ theme }) => theme.spacings.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    display: none;
+  }
+`;
+
+export const NavLink = styled(Link)`
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary};
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.accent};
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+`;
+
+export const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+export const ChevronWrapper = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+`;
+
+
+// --- THE FINAL, REFINED FIX IS HERE ---
+export const MobileNavPanel = styled(motion.div)<{ $isScrolled: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  
+  // The panel's background is now directly and identically tied to the header's state.
+  background-color: ${({ $isScrolled }) => $isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent'};
+  backdrop-filter: blur(${({ $isScrolled }) => $isScrolled ? '10px' : '0px'});
+  border-bottom: 1px solid ${({ $isScrolled, theme }) => $isScrolled ? theme.colors.border : 'transparent'};
+
+  border-bottom-left-radius: ${({ theme }) => theme.borderRadius};
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden;
+  
+  // Ensure the transition matches the header's for a synchronized effect.
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+`;
+// -------------------------------------
+
+export const MobileNavLinks = styled.nav`
+  display: flex;
+  flex-direction: column;
+  padding: ${({ theme }) => theme.spacings.sm} 0;
+`;
+
+export const MobileNavLink = styled(Link)`
+  padding: ${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.md};
+  color: ${({ theme }) => theme.colors.secondary};
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent}20;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+--- END OF FILE: src/components/Header/Header.styles.ts ---
+
+
+--- FILE: src/components/Header/index.tsx ---
+// src/components/Header/index.tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { FaChevronDown } from 'react-icons/fa';
+import { 
+  HeaderNav, 
+  NavContainer, 
+  LogoLink, 
+  NavLinks, 
+  NavLink,
+  MobileMenuButton,
+  ChevronWrapper,
+  MobileNavPanel,
+  MobileNavLinks,
+  MobileNavLink,
+} from './Header.styles';
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const panelVariants: Variants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: { 
+      opacity: 1, 
+      height: 'auto', 
+      transition: { duration: 0.3, ease: 'easeInOut' } 
+    },
+  };
+
+  return (
+    <HeaderNav $isScrolled={isScrolled}>
+      <NavContainer>
+        <LogoLink href="/">ZK.</LogoLink>
+        
+        {/* Desktop Navigation */}
+        <NavLinks>
+          <NavLink href="/#projects">Work</NavLink>
+          <NavLink href="/#about">About</NavLink>
+          <NavLink href="/#contact">Contact</NavLink>
+        </NavLinks>
+
+        {/* Refined Mobile Navigation Button */}
+        <MobileMenuButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <ChevronWrapper
+            animate={{ rotate: isMenuOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <FaChevronDown />
+          </ChevronWrapper>
+        </MobileMenuButton>
+      </NavContainer>
+
+      {/* Mobile Drop-down Panel */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <MobileNavPanel
+            $isScrolled={isScrolled} 
+            variants={panelVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
+            <MobileNavLinks>
+              <MobileNavLink href="/#projects" onClick={() => setIsMenuOpen(false)}>
+                Work
+              </MobileNavLink>
+              <MobileNavLink href="/#about" onClick={() => setIsMenuOpen(false)}>
+                About
+              </MobileNavLink>
+              <MobileNavLink href="/#contact" onClick={() => setIsMenuOpen(false)}>
+                Contact
+              </MobileNavLink>
+            </MobileNavLinks>
+          </MobileNavPanel>
+        )}
+      </AnimatePresence>
+    </HeaderNav>
+  );
+};
+
+export default Header;
+
+--- END OF FILE: src/components/Header/index.tsx ---
+
+
+--- FILE: src/components/Hero/Hero.styles.ts ---
+// src/components/Hero/Hero.styles.ts
+
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const HeroContainer = styled(motion.section)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 ${({ theme }) => theme.spacings.md};
+  text-align: center;
+  position: relative; // For positioning child elements
+  overflow: hidden; // To contain the background blob
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.8)), url('/hero-background.webp');
+    background-size: cover;
+    background-position: center;
+    z-index: -2; // Place it behind the text and the animated blob
+  }
+`;
+
+export const Name = styled(motion.h2)`
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary};
+  margin-bottom: ${({ theme }) => theme.spacings.xs};
+`;
+
+export const MainHeading = styled(motion.h1)`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.display};
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #FFFFFF, #CFCFCF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
+  max-width: 900px;
+
+   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes.xxl};
+  }
+`;
+
+export const SubHeading = styled(motion.p)`
+  font-size: ${({ theme }) => theme.fontSizes.large};
+  color: ${({ theme }) => theme.colors.secondary};
+  max-width: 700px;
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+
+   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+  }
+`;
+
+export const CTAButton = styled(motion.button)`
+  background-color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-weight: 600;
+  padding: 0.8rem 2.5rem;
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: ${({ theme }) => theme.shadows.subtle};
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 30px rgba(0, 112, 243, 0.2);
+  }
+`;
+
+export const BackgroundBlob = styled(motion.div)`
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 112, 243, 0.15) 0%, rgba(0, 112, 243, 0) 70%);
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1; // Place it behind all the content
+  will-change: transform; // Performance optimization
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    width: 300px;
+    height: 300px;
+    filter: blur(70px);
+  }
+`;
+
+--- END OF FILE: src/components/Hero/Hero.styles.ts ---
+
+
+--- FILE: src/components/Hero/index.tsx ---
+// src/components/Hero/index.tsx
+'use client';
+
+import React from 'react';
+import { motion, Variants } from 'framer-motion';
+import {
+  HeroContainer, Name, MainHeading, SubHeading, CTAButton, BackgroundBlob
+} from './Hero.styles';
+
+const MemoizedName = React.memo(Name);
+const MemoizedMainHeading = React.memo(MainHeading);
+const MemoizedSubHeading = React.memo(SubHeading);
+
+const Hero = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
+  };
+
+  return (
+    <HeroContainer
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <BackgroundBlob
+        animate={{
+          x: [0, 100, 0, -50, 0],
+          y: [0, -50, 50, 100, 0],
+          rotate: [0, 10, -10, 5, 0],
+          scale: [1, 1.1, 0.9, 1.05, 1],
+        }}
+        transition={{
+          duration: 40,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      />
+      <MemoizedName variants={itemVariants}>Zain Khalid</MemoizedName>
+      <MemoizedMainHeading variants={itemVariants}>
+        Digital experiences that perform and inspire.
+      </MemoizedMainHeading>
+      <MemoizedSubHeading variants={itemVariants}>
+        I build fast, secure, and user-friendly websites that help businesses succeed, from initial concept to final launch.
+      </MemoizedSubHeading>
+      <CTAButton 
+        as="a"
+        href="/#projects"
+        variants={itemVariants}
+      >
+        Explore The Blueprint
+      </CTAButton>
+    </HeroContainer>
+  );
+};
+
+export default React.memo(Hero);
+
+--- END OF FILE: src/components/Hero/index.tsx ---
+
+
+--- FILE: src/components/HomePage.tsx ---
+// src/components/HomePage.tsx
+'use client';
+import React from 'react';
+import dynamic from 'next/dynamic';
+import Hero from '@/components/Hero';
+import Philosophy from '@/components/Philosophy';
+import About from '@/components/About';
+import { Section } from '@/components/Section';
+import { SectionHeader, SectionTitle, SectionSubtitle } from '@/components/SectionHeader';
+import { projects } from '@/data/projects';
+import ProjectCard from '@/components/ProjectCard';
+import { HorizontalShowcase } from '@/components/HorizontalShowcase';
+import LikeButton from '@/components/LikeButton';
+
+const Skills = dynamic(() => import('@/components/Skills'));
+const Performance = dynamic(() => import('@/components/Performance'));
+const Contact = dynamic(() => import('@/components/Contact'));
+
+const HomePage = () => {
+  return (
+    <main>
+      <Hero />
+      <LikeButton /> 
+      <div id="about">
+        <Philosophy />
+        <About />
+      </div>
+      <Skills />
+      <Performance />
+
+      <section id="projects">
+        <Section>
+          <SectionHeader>
+            <SectionTitle>The Blueprint</SectionTitle>
+            <SectionSubtitle>
+              A selection of my featured work, showcasing a commitment to
+              quality, performance, and user-centric design.
+            </SectionSubtitle>
+          </SectionHeader>
+        </Section>
+        <HorizontalShowcase>
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </HorizontalShowcase>
+      </section>
+
+      <Contact />
+    </main>
+  );
+};
+
+export default HomePage;
+
+--- END OF FILE: src/components/HomePage.tsx ---
+
+
+--- FILE: src/components/HorizontalShowcase.ts ---
+import styled from 'styled-components';
+
+export const HorizontalShowcase = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacings.md};
+  padding: ${({ theme }) => theme.spacings.md} 0;
+  
+  // The magic for horizontal scrolling
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; // Snaps cards into place
+  
+  // Hiding the scrollbar for a cleaner look across browsers
+  -ms-overflow-style: none;  // IE and Edge
+  scrollbar-width: none;  // Firefox
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, and Opera
+  }
+
+  // Add some padding on the sides so cards don't touch the edge
+  // This is a trick to make it look like it's inside the main container
+  &::before, &::after {
+    content: '';
+    width: calc((100vw - 1200px) / 2); // Adjust 1200px to match your Section's max-width
+
+    @media (max-width: 1200px) {
+      width: ${({ theme }) => theme.spacings.md};
+    }
+  }
+`;
+
+--- END OF FILE: src/components/HorizontalShowcase.ts ---
+
+
+--- FILE: src/components/ImageGallery/ImageGallery.styles.ts ---
+// src/components/ImageGallery/ImageGallery.styles.ts
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+export const GalleryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacings.md};
+`;
+
+export const MainImageWrapper = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; // A good default aspect ratio
+  background-color: #111;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+export const MainImage = styled(Image)`
+  // 'contain' ensures the whole image is visible, regardless of its dimensions
+  object-fit: contain; 
+  width: 100%;
+  height: 100%;
+`;
+
+export const ThumbnailRail = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacings.sm};
+  justify-content: center;
+`;
+
+export const Thumbnail = styled.div<{ $isActive: boolean }>`
+  position: relative;
+  width: 100px;
+  height: 60px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid ${({ $isActive, theme }) => $isActive ? theme.colors.accent : 'transparent'};
+  transition: border-color 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    transition: background-color 0.3s ease;
+  }
+  
+  &:hover::after {
+    background-color: rgba(0,0,0,0.2);
+  }
+  
+  ${({ $isActive }) => $isActive && `
+    &::after {
+      background-color: transparent;
+    }
+  `}
+`;
+
+--- END OF FILE: src/components/ImageGallery/ImageGallery.styles.ts ---
+
+
+--- FILE: src/components/ImageGallery/index.tsx ---
+// src/components/ImageGallery/index.tsx
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import {
+  GalleryContainer, MainImageWrapper, MainImage,
+  ThumbnailRail, Thumbnail
+} from './ImageGallery.styles';
+
+interface ImageGalleryProps {
+  images: string[];
+}
+
+// A simple, robust cross-fade animation
+const galleryVariants: Variants = {
+  enter: {
+    opacity: 0,
+  },
+  center: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!images || images.length === 0) {
+    return null;
+  }
+
+  return (
+    <GalleryContainer>
+      <MainImageWrapper>
+        {/* AnimatePresence is now responsible for the container's animation */}
+        <AnimatePresence initial={true} mode="wait">
+          <motion.div
+            // The key is essential for AnimatePresence to detect changes
+            key={activeIndex}
+            variants={galleryVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              opacity: { duration: 0.3, ease: 'easeInOut' }
+            }}
+            style={{ position: 'absolute', width: '100%', height: '100%' }}
+          >
+            <MainImage 
+              src={images[activeIndex]} 
+              alt={`Project image ${activeIndex + 1}`} 
+              fill
+              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 800px"
+              priority={true}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </MainImageWrapper>
+
+      {images.length > 1 && (
+        <ThumbnailRail>
+          {images.map((img, index) => (
+            <Thumbnail
+              key={img}
+              $isActive={index === activeIndex}
+              onClick={() => setActiveIndex(index)}
+            >
+              <Image 
+                src={img} 
+                alt={`Thumbnail ${index + 1}`} 
+                fill 
+                style={{ objectFit: 'cover' }} 
+                 loading="lazy" 
+              />
+            </Thumbnail>
+          ))}
+        </ThumbnailRail>
+      )}
+    </GalleryContainer>
+  );
+};
+
+export default React.memo(ImageGallery);
+
+--- END OF FILE: src/components/ImageGallery/index.tsx ---
+
+
+--- FILE: src/components/LikeButton/index.tsx ---
+// src/components/LikeButton/index.tsx
+
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { FaHeart } from 'react-icons/fa';
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { LikeWrapper, Button, HeartIcon, LikeCount } from './LikeButton.styles';
+
+const LOCAL_STORAGE_KEY = 'portfolio_liked_timestamp';
+
+const LikeButton = () => {
+  const [likes, setLikes] = useState(0);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [visitorId, setVisitorId] = useState<string | null>(null);
+
+  useEffect(() => {
+    // This function runs once when the component mounts.
+    const initialize = async () => {
+      // 1. Generate the unique browser fingerprint.
+      try {
+        const fp = await FingerprintJS.load();
+        const result = await fp.get();
+        setVisitorId(result.visitorId);
+      } catch (e) {
+        console.error("FingerprintJS failed to load or run", e);
+        setError("Could not verify device.");
+      }
+
+      // 2. Check local storage for a quick UI update.
+      const likedTimestamp = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (likedTimestamp && Date.now() - parseInt(likedTimestamp, 10) < 24 * 60 * 60 * 1000) {
+        setHasLiked(true);
+      } else {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+      }
+
+      // 3. Fetch the initial like count from the server.
+      try {
+        const response = await fetch('/api/likes');
+        if (response.ok) {
+          const data = await response.json();
+          setLikes(data.likes);
+        }
+      } catch (e) {
+        console.error("Failed to fetch likes", e);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initialize();
+  }, []); // The empty dependency array ensures this runs only once.
+
+  const handleLike = async () => {
+    // Prevent action if already liked, still loading, or fingerprint failed.
+    if (hasLiked || isLoading || !visitorId) return;
+
+    // Optimistic UI update for a snappy feel.
+    setHasLiked(true);
+    setLikes(prev => prev + 1);
+    const heartIcon = document.querySelector('.like-heart');
+    heartIcon?.classList.add('liked');
+
+    try {
+      // Send the unique visitorId to our backend API.
+      const response = await fetch('/api/likes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success: Update count with server's response and set local storage lock.
+        setLikes(data.likes);
+        localStorage.setItem(LOCAL_STORAGE_KEY, Date.now().toString());
+      } else {
+        // Failure: Revert the UI update and show the error from the server.
+        setError(data.error || 'Failed to like.');
+        setLikes(prev => prev - 1);
+        setHasLiked(false);
+      }
+    } catch (e) {
+      // Network or other critical error: Revert the UI update.
+      setError('An error occurred. Please try again.');
+      setLikes(prev => prev - 1);
+      setHasLiked(false);
+    }
+
+    // Clean up visual effects and error messages after a short delay.
+    setTimeout(() => heartIcon?.classList.remove('liked'), 500);
+    setTimeout(() => setError(''), 4000);
+  };
+
+  return (
+    <LikeWrapper
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5, duration: 0.5 }}
+    >
+      <Button 
+        onClick={handleLike} 
+        disabled={hasLiked || isLoading || !visitorId} 
+        aria-label="Like this portfolio"
+      >
+        <HeartIcon $liked={hasLiked} className="like-heart">
+          <FaHeart />
+        </HeartIcon>
+        <LikeCount>{isLoading ? '...' : likes.toLocaleString()}</LikeCount>
+        <span>{hasLiked ? 'Thank you!' : 'Appreciate my work? Hit the heart!'}</span>
+      </Button>
+      {error && <p style={{color: '#ff4e42', marginLeft: '1rem', fontSize: '0.8rem'}}>{error}</p>}
+    </LikeWrapper>
+  );
+};
+
+export default LikeButton;
+
+--- END OF FILE: src/components/LikeButton/index.tsx ---
+
+
+--- FILE: src/components/LikeButton/LikeButton.styles.ts ---
+// src/components/LikeButton/LikeButton.styles.ts
+import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
+
+const heartBeat = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+`;
+
+export const LikeWrapper = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${({ theme }) => theme.spacings.md} 0;
+`;
+
+export const Button = styled.button`
+  background-color: #222;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: ${({ theme }) => theme.colors.primary};
+
+  &:hover:not(:disabled) {
+    border-color: ${({ theme }) => theme.colors.accent};
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+`;
+
+export const HeartIcon = styled(motion.div)<{ $liked: boolean }>`
+  font-size: 1.2rem;
+  color: ${({ $liked, theme }) => $liked ? '#ff4e42' : theme.colors.secondary};
+  
+  &.liked {
+    animation: ${heartBeat} 0.5s ease-in-out;
+  }
+`;
+
+export const LikeCount = styled.span`
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 30px; // Prevents layout shift
+  text-align: left;
+`;
+
+--- END OF FILE: src/components/LikeButton/LikeButton.styles.ts ---
+
+
+--- FILE: src/components/Performance/index.tsx ---
+// src/components/Performance/index.tsx
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import { Section } from '@/components/Section';
+import { SectionHeader, SectionTitle, SectionSubtitle } from '@/components/SectionHeader';
+import { PerformanceContainer, TextContent, ImageWrapper, ScoreKey, ScoreKeyItem, ScoreIndicator } from './Performance.styles';
+import PerformanceAccordion from '../PerformanceAccordion';
+
+const Performance = () => {
+  return (
+    <Section>
+      <SectionHeader>
+        <SectionTitle>The Performance Promise</SectionTitle>
+        <SectionSubtitle>
+          A beautiful website is useless if it&apos;s slow. I engineer applications for elite performance, ensuring the best user experience and top search rankings. Here's how Google measures it.
+        </SectionSubtitle>
+      </SectionHeader>
+      <PerformanceContainer>
+        <TextContent>
+          <PerformanceAccordion />
+
+          <ScoreKey>
+            <h5>Understanding the Scores</h5>
+            <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '1rem' }}>
+              Google Lighthouse grades web pages on a scale of 0 to 100, with clear benchmarks for quality:
+            </p>
+            <ScoreKeyItem>
+              <ScoreIndicator score="good" />
+              <div><strong>90-100 (Good):</strong> Indicates an elite, highly-optimized experience. This is the target for all my projects.</div>
+            </ScoreKeyItem>
+            <ScoreKeyItem>
+              <ScoreIndicator score="average" />
+              <div><strong>50-89 (Needs Improvement):</strong> The page is usable but has performance issues that can lead to user frustration.</div>
+            </ScoreKeyItem>
+            <ScoreKeyItem>
+              <ScoreIndicator score="poor" />
+              <div><strong>0-49 (Poor):</strong> The page provides a slow, potentially frustrating experience for users.</div>
+            </ScoreKeyItem>
+          </ScoreKey>
+
+        </TextContent>
+        <ImageWrapper>
+          <p style={{ textAlign: 'center', padding: '1rem', color: '#888', fontStyle: 'italic' }}>
+            <strong>A Report Card from Google:</strong> The image shown is a real Lighthouse report from one of my projects. Achieving scores in the green &quot;Good&quot; range signals a high-quality site to both your visitors and Google&apos;s algorithm, directly impacting your business&apos;s credibility and visibility.
+          </p>
+          <Image
+            src="/lighthouse-report.png"
+            alt="Lighthouse performance report showing scores in the green 'Good' range (90-100)"
+            width={1200}
+            height={750}
+            style={{ width: '100%', height: 'auto' }}
+          />
+        </ImageWrapper>
+      </PerformanceContainer>
+    </Section>
+  );
+};
+
+export default Performance;
+
+--- END OF FILE: src/components/Performance/index.tsx ---
+
+
+--- FILE: src/components/Performance/Performance.styles.ts ---
+// src/components/Performance/Performance.styles.ts
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const PerformanceContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.lg};
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacings.md}; // Reduce the gap on mobile
+  }
+`;
+
+export const TextContent = styled(motion.div)``;
+
+export const ImageWrapper = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  border: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+export const VitalsList = styled.ul`
+  list-style: none;
+  margin-top: ${({ theme }) => theme.spacings.md};
+  padding-left: 1.5rem;
+`;
+
+export const VitalItem = styled.li`
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
+  position: relative;
+  
+  &::before {
+    content: '✓';
+    color: ${({ theme }) => theme.colors.accent};
+    position: absolute;
+    left: -1.5rem;
+    font-weight: 700;
+  }
+`;
+
+export const VitalTitle = styled.h4`
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const VitalDescription = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 0.9rem;
+`;
+
+export const ScoreKey = styled.div`
+  margin-top: ${({ theme }) => theme.spacings.md};
+  padding: ${({ theme }) => theme.spacings.sm};
+  background-color: #111;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius};
+
+  h5 {
+    font-weight: 600;
+    margin-bottom: ${({ theme }) => theme.spacings.sm};
+  }
+`;
+
+export const ScoreKeyItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.sm};
+  margin-bottom: ${({ theme }) => theme.spacings.xs};
+  font-size: 0.9rem;
+`;
+
+// A function to return color based on score range
+const getScoreColor = (score: 'good' | 'average' | 'poor') => {
+  switch (score) {
+    case 'good': return '#0cce6b'; // Green
+    case 'average': return '#ffa400'; // Orange
+    case 'poor': return '#ff4e42'; // Red
+    default: return '#fff';
+  }
+};
+
+export const ScoreIndicator = styled.div<{ score: 'good' | 'average' | 'poor' }>`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: ${({ score }) => getScoreColor(score)};
+  flex-shrink: 0;
+`;
+
+--- END OF FILE: src/components/Performance/Performance.styles.ts ---
+
+
+--- FILE: src/components/PerformanceAccordion/index.tsx ---
+// src/components/PerformanceAccordion/index.tsx
+'use client';
+import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { FaChevronDown, FaRocket, FaMousePointer, FaPaintRoller } from 'react-icons/fa';
+import {
+  AccordionItem, AccordionHeader, HeaderContent, IconWrapper, Title, ChevronWrapper, AccordionContent, ContentText
+} from './PerformanceAccordion.styles';
+
+const accordionData = [
+  {
+    icon: FaRocket,
+    title: 'LCP (Largest Contentful Paint)',
+    explanation: '<strong>In simple terms:</strong> How fast the main content of your page loads. <br/><br/> <strong>Analogy:</strong> Imagine walking into a store. If the most interesting products are immediately visible, you\'re likely to stay. If the main shelves are empty for too long, you\'ll walk out. <br/><br/> <strong>Business Benefit:</strong> A fast LCP keeps visitors engaged from the very first second, dramatically reducing bounce rates.'
+  },
+  {
+    icon: FaMousePointer,
+    title: 'INP (Interaction to Next Paint)',
+    explanation: '<strong>In simple terms:</strong> How quickly the page reacts when you click, tap, or type. <br/><br/> <strong>Analogy:</strong> It\'s like having a conversation. If you ask a question and get an immediate response, the conversation feels smooth. If there\'s a long, awkward pause, it becomes frustrating. <br/><br/> <strong>Business Benefit:</strong> A low INP builds user trust and makes your site feel professional and reliable, not broken or slow.'
+  },
+  {
+    icon: FaPaintRoller,
+    title: 'CLS (Cumulative Layout Shift)',
+    explanation: '<strong>In simple terms:</strong> How much the page unexpectedly jumps around while loading. <br/><br/> <strong>Analogy:</strong> This is the classic "I tried to click a button, but an ad loaded and I accidentally clicked the ad instead." It\'s annoying and erodes trust. <br/><br/> <strong>Business Benefit:</strong> A low CLS score means a stable, predictable experience, preventing user frustration and accidental clicks.'
+  },
+];
+
+const Accordion = () => {
+  const [expanded, setExpanded] = useState<false | number>(0);
+
+  return (
+    <>
+      {accordionData.map((item, index) => (
+        <AccordionItem key={item.title}>
+          <AccordionHeader
+            initial={false}
+            onClick={() => setExpanded(expanded === index ? false : index)}
+          >
+            <HeaderContent>
+              <IconWrapper><item.icon /></IconWrapper>
+              <Title>{item.title}</Title>
+            </HeaderContent>
+            <ChevronWrapper
+              animate={{ rotate: expanded === index ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FaChevronDown />
+            </ChevronWrapper>
+          </AccordionHeader>
+          <AnimatePresence initial={false}>
+            {expanded === index && (
+              <AccordionContent
+                key="content"
+                initial="collapsed"
+                animate="open"
+                exit="collapsed"
+                variants={{
+                  open: { opacity: 1, height: 'auto' },
+                  collapsed: { opacity: 0, height: 0 }
+                }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+              >
+                <ContentText dangerouslySetInnerHTML={{ __html: item.explanation }} />
+              </AccordionContent>
+            )}
+          </AnimatePresence>
+        </AccordionItem>
+      ))}
+    </>
+  );
+};
+
+export default Accordion;
+
+--- END OF FILE: src/components/PerformanceAccordion/index.tsx ---
+
+
+--- FILE: src/components/PerformanceAccordion/PerformanceAccordion.styles.ts ---
+// src/components/PerformanceAccordion/PerformanceAccordion.styles.ts
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const AccordionItem = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
+`;
+
+export const AccordionHeader = styled(motion.header)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: ${({ theme }) => theme.spacings.sm} 0;
+  width: 100%;
+`;
+
+export const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.sm};
+`;
+
+export const IconWrapper = styled.div`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.accent};
+`;
+
+export const Title = styled.h4`
+  font-size: 1.1rem;
+  font-weight: 600;
+`;
+
+export const ChevronWrapper = styled(motion.div)``;
+
+export const AccordionContent = styled(motion.section)`
+  overflow: hidden;
+  padding-left: calc(1.5rem + ${({ theme }) => theme.spacings.sm});
+`;
+
+export const ContentText = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  padding-bottom: ${({ theme }) => theme.spacings.md};
+  line-height: 1.7;
+
+  strong {
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: 600;
+  }
+`;
+
+--- END OF FILE: src/components/PerformanceAccordion/PerformanceAccordion.styles.ts ---
+
+
+--- FILE: src/components/Philosophy/index.tsx ---
+// src/components/Philosophy/index.tsx
+
+'use client';
+
+import React from 'react';
+import { Variants } from 'framer-motion';
+import { Section } from '@/components/Section';
+import {
+  PhilosophyGrid,
+  PhilosophyCard,
+  CardIcon,
+  CardHeading,
+  CardBody,
+} from './Philosophy.styles';
+import { FaLayerGroup, FaCode, FaBullhorn } from 'react-icons/fa'; // Icons for each card
+
+const Philosophy = () => {
+  // Animation for the card to fade in as it enters the viewport
+  const cardVariants: Variants = {
+    offscreen: {
+      y: 50,
+      opacity: 0,
+    },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        bounce: 0.4,
+        duration: 0.8,
+      },
+    },
+  };
+
+  return (
+    <Section>
+      <PhilosophyGrid>
+        <PhilosophyCard
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={cardVariants}
+        >
+          <CardIcon><FaLayerGroup /></CardIcon>
+          <CardHeading>Deep Logic & Systems</CardHeading>
+          <CardBody>
+            My expertise in C++ and C# provides a deep understanding of performance and robust architecture—the bedrock of any powerful application.
+          </CardBody>
+        </PhilosophyCard>
+
+        <PhilosophyCard
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={cardVariants}
+        >
+          <CardIcon><FaCode /></CardIcon>
+          <CardHeading>Modern Web & Full-Stack</CardHeading>
+          <CardBody>
+            I construct seamless applications using Next.js, ensuring dynamic functionality, ironclad security, and a flawless user experience.
+          </CardBody>
+        </PhilosophyCard>
+
+        <PhilosophyCard
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={cardVariants}
+        >
+          <CardIcon><FaBullhorn /></CardIcon>
+          <CardHeading>Strategic Growth & Design</CardHeading>
+          <CardBody>
+            A product is only successful if it&apos;s seen. My skills in SEO and marketing ensure your project not only performs perfectly but also captivates its audience.
+          </CardBody>
+        </PhilosophyCard>
+      </PhilosophyGrid>
+    </Section>
+  );
+};
+
+export default Philosophy;
+
+--- END OF FILE: src/components/Philosophy/index.tsx ---
+
+
+--- FILE: src/components/Philosophy/Philosophy.styles.ts ---
+// src/components/Philosophy/Philosophy.styles.ts
+
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const PhilosophyGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: ${({ theme }) => theme.spacings.md};
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const PhilosophyCard = styled(motion.div)`
+  background-color: #111111;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  padding: ${({ theme }) => theme.spacings.md};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const CardIcon = styled.div`
+  font-size: 2.5rem;
+  color: ${({ theme }) => theme.colors.accent};
+  margin-bottom: ${({ theme }) => theme.spacings.sm};
+`;
+
+export const CardHeading = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  margin-bottom: ${({ theme }) => theme.spacings.xs};
+`;
+
+export const CardBody = styled.p`
+  color: ${({ theme }) => theme.colors.secondary};
+  line-height: 1.7;
+`;
+
+--- END OF FILE: src/components/Philosophy/Philosophy.styles.ts ---
+
+
+--- FILE: src/components/ProjectCard/index.tsx ---
+// src/components/ProjectCard/index.tsx
+'use client';
+import React from 'react';
+import { Project } from '@/data/projects';
+import { FaArrowRight } from 'react-icons/fa';
+import {
+  CardLink,
+  CardContent,
+  Category,
+  Title,
+  ViewProjectPrompt
+} from './ProjectCard.styles';
+
+interface ProjectCardProps {
+  project: Project;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  return (
+    <CardLink href={`/projects/${project.slug}`}>
+      <CardContent>
+        <div>
+          <Category>{project.category}</Category>
+          <Title>{project.title}</Title>
+        </div>
+        <ViewProjectPrompt>
+          View Project <FaArrowRight />
+        </ViewProjectPrompt>
+      </CardContent>
+    </CardLink>
+  );
+};
+
+export default ProjectCard;
+
+--- END OF FILE: src/components/ProjectCard/index.tsx ---
+
+
+--- FILE: src/components/ProjectCard/ProjectCard.styles.ts ---
+// src/components/ProjectCard/ProjectCard.styles.ts
+
+import styled, { css } from 'styled-components';
+import Link from 'next/link';
+
+// Custom background using CSS gradients to create a high-tech, abstract and subtle visual flair.
+// This ensures the cards are not just flat, colored boxes.
+const cardBackground = css`
+  background-color: #1a1a1a;
+  background-image: 
+    radial-gradient(circle at 100% 0%, ${({ theme }) => theme.colors.accent}1A 0%, transparent 30%),
+    radial-gradient(circle at 0% 100%, ${({ theme }) => theme.colors.accent}1A 0%, transparent 25%);
+`;
+
+// The main component is changed from a div to a Next.js Link for semantic HTML and proper navigation.
+// It is styled as a block element to take up the full dimensions.
+export const CardLink = styled(Link)`
+  display: block;
+  position: relative;
+  width: 400px;
+  height: 250px; // A shorter, landscape-oriented height since there's no primary image.
+  border-radius: ${({ theme }) => theme.borderRadius};
+  overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  flex-shrink: 0; // Important for horizontal flex containers to prevent shrinking.
+  cursor: pointer;
+  text-decoration: none; // Removes the default underline from the link.
+  color: inherit; // Ensures text inside inherits the color from the body.
+  
+  ${cardBackground}
+
+  // Smooth transitions for hover effects to feel premium.
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  // A subtle lift and shadow effect on hover to provide feedback to the user.
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  // Responsive adjustments for smaller screens.
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    width: 320px;
+    height: 200px;
+  }
+`;
+
+// A container for the text content, using flexbox to space out the elements.
+export const CardContent = styled.div`
+  position: relative;
+  z-index: 2; // Ensures content is above any potential pseudo-elements or backgrounds.
+  padding: ${({ theme }) => theme.spacings.md};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Pushes the title/category to the top and the prompt to the bottom.
+  height: 100%;
+`;
+
+export const Category = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  color: ${({ theme }) => theme.colors.secondary};
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+`;
+
+export const Title = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: 1.75rem;
+  color: ${({ theme }) => theme.colors.primary};
+  line-height: 1.2;
+  margin-top: 0.25rem;
+`;
+
+// The "View Project" prompt at the bottom of the card.
+export const ViewProjectPrompt = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.accent};
+  align-self: flex-start; // Ensures it doesn't stretch to full width.
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  // A micro-interaction: the arrow moves slightly to the right on hover, guiding the user.
+  ${CardLink}:hover & svg {
+    transform: translateX(5px);
+  }
+`;
+
+--- END OF FILE: src/components/ProjectCard/ProjectCard.styles.ts ---
+
+
+--- FILE: src/components/Section.ts ---
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const Section = styled(motion.section)`
+  padding: ${({ theme }) => theme.spacings.xl} ${({ theme }) => theme.spacings.md};
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => theme.spacings.lg} ${({ theme }) => theme.spacings.sm};
+  }
+`;
+
+--- END OF FILE: src/components/Section.ts ---
+
+
+--- FILE: src/components/SectionHeader.ts ---
+import styled from 'styled-components';
+
+export const SectionHeader = styled.div`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacings.lg};
+`;
+
+export const SectionTitle = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
+  margin-bottom: ${({ theme }) => theme.spacings.xs};
+`;
+
+export const SectionSubtitle = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.large};
+  color: ${({ theme }) => theme.colors.secondary};
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+--- END OF FILE: src/components/SectionHeader.ts ---
+
+
+--- FILE: src/components/Skills/index.tsx ---
+// src/components/Skills/index.tsx
+'use client';
+import React from 'react';
+import { Variants } from 'framer-motion';
+import { skillsData } from '@/data/skills';
+import { Section } from '@/components/Section';
+import { SectionHeader, SectionTitle, SectionSubtitle } from '@/components/SectionHeader';
+import { SkillCategoryCard, CategoryTitle, SkillsGrid, SkillItem, SkillIcon, SkillName } from './Skills.styles';
+
+const Skills = () => {
+  const cardVariants: Variants = {
+    offscreen: { y: 50, opacity: 0 },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: { type: 'spring', bounce: 0.2, duration: 0.8 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    offscreen: { scale: 0.5, opacity: 0 },
+    onscreen: { scale: 1, opacity: 1 },
+  };
+
+  return (
+    <Section>
+      <SectionHeader>
+        <SectionTitle>My Toolkit</SectionTitle>
+        <SectionSubtitle>
+          A curated collection of the languages, frameworks, and technologies I use to architect and build modern web applications.
+        </SectionSubtitle>
+      </SectionHeader>
+      
+      {skillsData.map((category, index) => (
+        <SkillCategoryCard
+          key={category.title}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+        >
+          <CategoryTitle>{category.title}</CategoryTitle>
+          <SkillsGrid>
+            {category.skills.map(skill => (
+              <SkillItem
+                key={skill.name}
+                variants={itemVariants}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <SkillIcon as={skill.Icon} />
+                <SkillName>{skill.name}</SkillName>
+              </SkillItem>
+            ))}
+          </SkillsGrid>
+        </SkillCategoryCard>
+      ))}
+    </Section>
+  );
+};
+
+export default Skills;
+
+--- END OF FILE: src/components/Skills/index.tsx ---
+
+
+--- FILE: src/components/Skills/Skills.styles.ts ---
+// src/components/Skills/Skills.styles.ts
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+export const SkillCategoryCard = styled(motion.div)`
+  background-color: #111;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  padding: ${({ theme }) => theme.spacings.md};
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+`;
+
+export const CategoryTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: 1.75rem;
+  margin-bottom: ${({ theme }) => theme.spacings.md};
+  padding-bottom: ${({ theme }) => theme.spacings.sm};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+export const SkillsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: ${({ theme }) => theme.spacings.md};
+`;
+
+export const SkillItem = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+`;
+
+export const SkillIcon = styled.div`
+  font-size: 3rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  ${SkillItem}:hover & {
+    color: ${({ theme }) => theme.colors.accent};
+    transform: scale(1.1);
+  }
+`;
+
+export const SkillName = styled.span`
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary};
+  transition: color 0.3s ease;
+  
+  ${SkillItem}:hover & {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+--- END OF FILE: src/components/Skills/Skills.styles.ts ---
+
+
+--- FILE: src/data/projects.ts ---
+// src/data/projects.ts
+
+export interface ProjectDetail {
+  heading: string;
+  text: string;
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  slug: string;
+  category: string;
+  description: string; // The short, one-liner for the teaser card
+  details: ProjectDetail[]; // The detailed breakdown for the project page
+  techStack: string[];
+  liveLink?: string;
+  githubLink?: string;
+  images: string[];
+}
+
+export const projects: Project[] = [
+  {
+    id: 1,
+    title: 'AJ Collections E-commerce Platform',
+    slug: 'aj-collections',
+    category: 'Next.js Web App',
+    description: 'A bespoke, high-performance e-commerce platform built from the ground up for a boutique fashion brand.',
+    details: [
+      {
+        heading: "The Challenge",
+        text: "AJ Collections required a digital storefront that was not only visually elegant but also incredibly fast and easy for their team to manage. Their previous platform was slow, offered a poor user experience, and failed to reflect the brand's premium quality, especially on mobile devices."
+      },
+      {
+        heading: "The Architectural Solution",
+        text: "I engineered a full-stack solution using Next.js for server-side rendering, ensuring lightning-fast page loads and optimal SEO. The backend was built on Supabase, leveraging its PostgreSQL database for robust data management, secure user accounts with Supabase Auth, and efficient image delivery via Supabase Storage. The front-end was crafted with SASS/SCSS for a pixel-perfect, fully responsive design."
+      },
+      {
+        heading: "Key Outcomes & Features",
+        text: "The new platform achieved a 95+ Lighthouse performance score, leading to a significant reduction in bounce rates. Key features include a custom-built admin panel for easy product and order management, secure Stripe integration for payments, and a seamless, intuitive user journey from browsing to checkout."
+      }
+    ],
+    techStack: ['Next.js', 'TypeScript', 'Sass/SCSS', 'Stripe', 'Supabase Auth', 'PostgreSQL', 'Supabase Storage'],
+    liveLink: 'https://ajcollections.vercel.app/',
+    images: ['/projects/ajcollections1.png', '/projects/ajcollections2.png', '/projects/ajcollections3.png', '/projects/ajcollections4.png'],
+  },
+  {
+    id: 5,
+    title: 'Genius Mart E-commerce Platform',
+    slug: 'genius-mart',
+    category: 'Next.js Web App',
+    description: 'A feature-rich e-commerce marketplace with a custom payment gateway, multi-panel architecture, and advanced product management.',
+    details: [
+      {
+        heading: "The Challenge",
+        text: "Genius Mart aimed to launch a comprehensive online store with a localized payment solution (JazzCash) and a sophisticated management system. The project required three distinct user experiences: a public-facing storefront, a powerful admin dashboard, and a dedicated panel for registered users."
+      },
+      {
+        heading: "The Architectural Solution",
+        text: "This platform was architected with Next.js for its performance benefits. A robust backend was built using Supabase, handling complex database schemas with PostgreSQL and secure authentication. For image assets, Cloudinary was integrated for its powerful optimization and delivery capabilities. The key technical achievement was the successful integration of the JazzCash API for seamless local payments."
+      },
+      {
+        heading: "Key Outcomes & Features",
+        text: "The result is a scalable, multi-faceted e-commerce solution. It features dynamic product management, a secure local payment gateway, and distinct, permission-based dashboards for administrators and users, providing a tailored experience for every stakeholder."
+      }
+    ],
+    techStack: ['Next.js', 'TypeScript', 'Sass/SCSS', 'JazzCash API', 'Supabase Auth', 'PostgreSQL', 'Cloudinary', 'Supabase Backend'],
+    images: ['/projects/genius2.png', '/projects/genius3.png', '/projects/genius4.png', '/projects/genius5.png','/projects/genius7.png'],
+  },
+  {
+    id: 3,
+    title: 'Admin Management Dashboard',
+    slug: 'admin-management-dashboard',
+    category: 'Next.js Web App',
+    description: 'A powerful and intuitive internal tool for managing core business operations, users, and application data.',
+    details: [
+      {
+        heading: "The Challenge",
+        text: "The client needed a centralized, secure, and user-friendly interface for their administrators to manage application data without direct database access. The system had to be fast, reliable, and capable of displaying complex data in an easily digestible format."
+      },
+      {
+        heading: "The Architectural Solution",
+        text: "I developed a secure, server-rendered dashboard using Next.js and TypeScript. Ant Design was chosen for its comprehensive library of enterprise-grade UI components, which accelerated development while ensuring a professional and consistent user interface. The backend was powered by Supabase and a PostgreSQL database, with Cloudinary handling any associated image or media assets."
+      },
+      {
+        heading: "Key Outcomes & Features",
+        text: "This dashboard empowered the admin team to perform CRUD (Create, Read, Update, Delete) operations efficiently. It features role-based access control, data visualization widgets, and a fully responsive layout, enabling management tasks from both desktop and tablet devices."
+      }
+    ],
+    techStack: ['Next.js','React', 'Cloudinary', 'Ant Design', 'TypeScript', 'PostgreSQL', 'Supabase Backend'],
+    images: ['/projects/admin1.png', '/projects/admin2.png', '/projects/admin3.png'],
+  },
+  {
+    id: 4,
+    title: 'Professional User Dashboard',
+    slug: 'professional-user-dashboard',
+    category: 'Next.js Web App',
+    description: 'A personalized and feature-rich user panel for the Genius Mart e-commerce store, enhancing the post-purchase experience.',
+    details: [
+      {
+        heading: "The Challenge",
+        text: "To complement the main storefront, a dedicated user dashboard was required where customers could track orders, manage their profile, view purchase history, and handle account settings. The goal was to build user trust and encourage repeat business by providing a transparent and empowering experience."
+      },
+      {
+        heading: "The Architectural Solution",
+        text: "Built as an integral part of the Genius Mart ecosystem, this Next.js application provides a secure, server-rendered portal for logged-in users. It communicates with the same robust Supabase/PostgreSQL backend as the main site, ensuring data consistency. A clean, responsive UI was crafted using SASS/SCSS to match the brand's aesthetic."
+      },
+      {
+        heading: "Key Outcomes & Features",
+        text: "The dashboard provides customers with full control over their account. Key features include real-time order tracking, a detailed purchase history with invoice access, and an intuitive interface for updating personal information and password management."
+      }
+    ],
+    techStack: ['Next.js','React', 'Cloudinary', 'Sass/SCSS', 'TypeScript', 'PostgreSQL', 'Supabase Backend'],
+    images: ['/projects/user1.png', '/projects/user2.png', '/projects/user3.png', '/projects/user4.png'],
+  },
+   {
+    id: 2,
+    title: 'Data Analytics Dashboard',
+    slug: 'data-analytics-dashboard',
+    category: 'React Web App',
+    description: 'A client-side rendered dashboard for visualizing complex business intelligence data with an elegant interface.',
+    details: [
+        {
+            heading: "The Challenge",
+            text: "A SaaS client needed a highly interactive dashboard to present complex analytics to their end-users. The application had to be fast, responsive, and capable of rendering various chart types from dynamic data sources, without requiring a full page reload for updates."
+        },
+        {
+            heading: "The Architectural Solution",
+            text: "I built this application using React and TypeScript for a type-safe, component-based architecture. Ant Design was leveraged for its rich set of UI components, including tables, charts, and graphs, which allowed for rapid development of a sophisticated interface. Cloudinary was integrated for handling any user-uploaded images or report assets."
+        },
+        {
+            heading: "Key Outcomes & Features",
+            text: "The final product is a performant, client-side rendered dashboard that provides users with powerful data visualization tools. It features filterable data tables, interactive charts, and a clean, modern design that makes complex data accessible and easy to understand."
+        }
+    ],
+    techStack: ['React', 'Cloudinary', 'Ant Design', 'TypeScript'],
+    images: ['/projects/dashboard1.png', '/projects/dashboard2.png', '/projects/dashboard3.png'],
+  },
+  {
+    id: 6,
+    title: 'Professional Brand Identities',
+    slug: 'professional-brand-identities',
+    category: 'Graphic Design',
+    description: 'Crafting memorable and cohesive visual identities for startups and established businesses.',
+    details: [
+      {
+        heading: "The Goal",
+        text: "To develop complete visual systems that effectively communicate a brand's essence and values. This goes beyond a simple logo to include a full suite of assets that ensure brand consistency across all platforms."
+      },
+      {
+        heading: "My Process",
+        text: "My approach involves deep collaboration with the client to understand their mission, target audience, and competitive landscape. I then translate these insights into a visual language, developing the logo, selecting typography, defining a color palette, and creating versatile brand marks. The process is iterative, with feedback loops ensuring the final result is perfectly aligned with the client's vision."
+      },
+      {
+        heading: "The Deliverables",
+        text: "Clients receive a comprehensive brand guide and a full set of digital assets, including high-resolution logos for web and print, custom icons, social media templates, and business card designs. The tools used include the Adobe Creative Suite and Figma for a modern, collaborative workflow."
+      }
+    ],
+    techStack: ['Adobe Illustrator', 'Photoshop', 'Canva', 'Figma'],
+    images: ['/projects/logo1.png', '/projects/logo2.png', '/projects/logo3.png', '/projects/logo4.png', '/projects/logo5.png'],
+  },
+  {
+    id: 7,
+    title: 'Brand Promotion & Marketing Collateral',
+    slug: 'professional-brand-promotions',
+    category: 'Graphic Design',
+    description: 'Designing eye-catching marketing materials that capture attention and drive engagement.',
+    details: [
+      {
+        heading: "The Goal",
+        text: "To create visually compelling promotional materials for digital and print campaigns. This includes everything from social media posters and web banners to physical menus and brochures, all designed to be on-brand and effective."
+      },
+      {
+        heading: "My Process",
+        text: "I work with clients to understand the objective of each campaign—whether it's announcing a sale, launching a new product, or promoting an event. I then design collateral that is not only beautiful but also strategically sound, with clear calls-to-action and a strong visual hierarchy that guides the viewer's eye."
+      },
+      {
+        heading: "The Deliverables",
+        text: "This service provides ready-to-use assets optimized for their intended platform. This includes social media graphics correctly sized for Instagram, Facebook, and Twitter; high-resolution, print-ready PDFs for menus and posters; and optimized web banners for digital advertising campaigns."
+      }
+    ],
+    techStack: ['Adobe Illustrator', 'Photoshop', 'Canva', 'GIMP'],
+    images: [ '/projects/poster2.png', '/projects/poster3.png', '/projects/poster5.png', '/projects/poster6.png', '/projects/poster7.png', '/projects/poster8.png', '/projects/poster9.png'],
+  },
+];
+
+--- END OF FILE: src/data/projects.ts ---
+
+
+--- FILE: src/data/skills.ts ---
+// src/data/skills.ts
+import { IconType } from 'react-icons';
+import { FaHtml5, FaCss3Alt, FaReact, FaSass, FaPaintBrush, FaNodeJs, FaPython, FaGitAlt, FaRegObjectGroup  } from 'react-icons/fa';
+import { 
+  SiTypescript, 
+  SiNextdotjs, 
+  SiStyledcomponents, 
+  SiPostgresql, 
+  SiSupabase, 
+  SiCplusplus, 
+  SiSharp,
+  SiJavascript,
+  SiGimp // Corrected GIMP import
+} from 'react-icons/si';
+import { VscVscode } from "react-icons/vsc";
+import { TbSeo, TbSocial, TbPhoto  } from 'react-icons/tb';
+
+export interface Skill {
+  name: string;
+  Icon: IconType;
+}
+
+export interface SkillCategory {
+  title: string;
+  skills: Skill[];
+}
+
+export const skillsData: SkillCategory[] = [
+  {
+    title: "Languages",
+    skills: [
+      { name: "C++", Icon: SiCplusplus },
+      { name: "C#", Icon: SiSharp },
+      { name: "Python", Icon: FaPython },
+      { name: "JavaScript (ES6+)", Icon: SiJavascript },
+      { name: "TypeScript", Icon: SiTypescript },
+    ],
+  },
+  {
+    title: "Frontend Development",
+    skills: [
+      { name: "HTML5", Icon: FaHtml5 },
+      { name: "CSS3", Icon: FaCss3Alt },
+      { name: "Sass/SCSS", Icon: FaSass },
+      { name: "Next.js", Icon: SiNextdotjs },
+      { name: "React", Icon: FaReact },
+      { name: "Styled-Components", Icon: SiStyledcomponents },
+      { name: "Ant Design", Icon: FaPaintBrush },
+    ],
+  },
+  {
+    title: "Backend & Database",
+    skills: [
+      { name: "Node.js", Icon: FaNodeJs },
+      { name: "Supabase", Icon: SiSupabase },
+      { name: "PostgreSQL", Icon: SiPostgresql },
+    ],
+  },
+  {
+    title: "Marketing & Design",
+    skills: [
+      { name: "SEO", Icon: TbSeo },
+      { name: "Digital Marketing", Icon: TbSocial },
+      { name: "Logo Design", Icon: FaRegObjectGroup },
+      { name: "Posters/Banners", Icon: TbPhoto },
+      { name: "GIMP", Icon: SiGimp }, // Corrected component and source
+    ],
+  },
+   {
+    title: "Tools & DevOps",
+    skills: [
+      { name: "Git & GitHub", Icon: FaGitAlt },
+      { name: "VS Code", Icon: VscVscode }, // Corrected component and source
+    ],
+  },
+];
+
+--- END OF FILE: src/data/skills.ts ---
+
+
+--- FILE: src/lib/registry.tsx ---
+'use client'
+
+import React, { useState } from 'react'
+import { useServerInsertedHTML } from 'next/navigation'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+
+export default function StyledComponentsRegistry({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  // Only create stylesheet once with lazy initial state
+  // x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
+  const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet())
+
+  useServerInsertedHTML(() => {
+    const styles = styledComponentsStyleSheet.getStyleElement()
+    styledComponentsStyleSheet.instance.clearTag()
+    return <>{styles}</>
+  })
+
+  if (typeof window !== 'undefined') return <>{children}</>
+
+  return (
+    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      {children}
+    </StyleSheetManager>
+  )
+}
+
+--- END OF FILE: src/lib/registry.tsx ---
+
+
+--- FILE: src/styles/common.styles.ts ---
+// src/styles/common.styles.ts
+
+import styled from 'styled-components';
+
+export const TechList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacings.xs};
+`;
+
+export const TechTag = styled.span`
+  background-color: ${({ theme }) => theme.colors.accent}20;
+  color: ${({ theme }) => theme.colors.accent};
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+`;
+
+export const LinkContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacings.sm};
+`;
+
+export const ProjectLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+
+  svg {
+    font-size: 1.2rem;
+  }
+`;
+
+--- END OF FILE: src/styles/common.styles.ts ---
+
+
+--- FILE: src/styles/GlobalStyles.ts ---
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.primary};
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+`;
+
+--- END OF FILE: src/styles/GlobalStyles.ts ---
+
+
+--- FILE: src/styles/styled.d.ts ---
+// src/styles/styled.d.ts
+
+import 'styled-components';
+import { theme } from './theme';
+
+// Infer the type from the theme object itself
+type Theme = typeof theme;
+
+// Use declaration merging to extend the module directly
+declare module 'styled-components' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface DefaultTheme extends Theme {}
+}
+
+--- END OF FILE: src/styles/styled.d.ts ---
+
+
+--- FILE: src/styles/theme.ts ---
+export const theme = {
+  colors: {
+    background: '#0A0A0A', // A very dark, near-black
+    primary: '#FFFFFF',     // Pure white for primary text and elements
+    accent: '#0070F3',       // A vibrant blue for CTAs and highlights
+    secondary: '#888888',   // Grey for secondary text
+    border: '#222222',      // Subtle borders
+  },
+  fonts: {
+    primary: "'Inter', sans-serif",
+    secondary: "'Satoshi', sans-serif", // A beautiful alternative font if needed
+  },
+  fontSizes: {
+    small: '0.875rem', // 14px
+    medium: '1rem',      // 16px
+    large: '1.25rem',    // 20px
+    xl: '2rem',          // 32px
+    xxl: '3rem',         // 48px
+    display: '4.5rem',   // 72px
+  },
+  spacings: {
+    xs: '0.5rem', // 8px
+    sm: '1rem',   // 16px
+    md: '2rem',   // 32px
+    lg: '4rem',   // 64px
+    xl: '6rem',   // 96px
+  },
+  breakpoints: {
+    xs: '480px',
+    sm: '768px',
+    md: '1024px',
+    lg: '1280px',
+  },
+  shadows: {
+    subtle: '0px 4px 20px rgba(0, 112, 243, 0.1)',
+  },
+  borderRadius: '8px',
+};
+
+--- END OF FILE: src/styles/theme.ts ---
+
+
+--- FILE: tsconfig.json ---
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js"],
+  "exclude": ["node_modules"]
+}
+
+
+--- END OF FILE: tsconfig.json ---
+
