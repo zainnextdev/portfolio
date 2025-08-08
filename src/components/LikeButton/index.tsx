@@ -111,7 +111,7 @@ const LikeButton = () => {
           <FaHeart />
         </HeartIcon>
         <LikeCount>{isLoading ? '...' : likes.toLocaleString()}</LikeCount>
-        <span>{hasLiked ? 'Thank you!' : 'Appreciate my work?'}</span>
+        <span>{hasLiked ? 'Thank you!' : 'Appreciate my work? Hit the heart!'}</span>
       </Button>
       {error && <p style={{color: '#ff4e42', marginLeft: '1rem', fontSize: '0.8rem'}}>{error}</p>}
     </LikeWrapper>
